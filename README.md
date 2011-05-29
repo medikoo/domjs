@@ -1,8 +1,7 @@
-# domjs - Client and server side dom template engine
+# domjs - client and server side dom template engine
 
-Build dom structure easy way with plain JavaScript.  
-Can be used on both client and server side.  
-Due to its small footprint it suits small projects best.
+Build dom structure easy way with plain JavaScript. Can be used on both client
+and server side. Due to its small footprint it's best suited for small projects.
 
 ## Instalation
 
@@ -10,12 +9,12 @@ When using node:
 
 	$ npm install domjs
 
-_Instructions for browser side installation coming soon._
+_Instructions for browser side installation on the way._
 
 ## Usage
 
-What would be the easiest, most intuitive way to build html5 DOM tree with  
-plain JavaScript ?
+What would be the easiest, most intuitive way to build html5 DOM tree with plain
+JavaScript ?
 
 	var mytemplate = function () {
 		header(
@@ -23,7 +22,7 @@ plain JavaScript ?
 			h2('Subheading'));
 
 		nav(
-			ul({ class: 'breadcrumbs' },
+			ul({ 'class': 'breadcrumbs' },
 				li(a({ href: '/' }, 'Home')),
 				li(a({ href: '/section/'}, 'Section')),
 				li(a('Subject'))));
@@ -34,8 +33,10 @@ plain JavaScript ?
 		footer('Footer stuff');
 	};
 
-This is how templates for domjs are written. To get `mytemplate` function  
-content turned into DOM (literally DocumentFragment):
+This is how templates for domjs are written.  
+
+To get `mytemplate` function content turned into DOM
+(literally _DocumentFragment_):
 
 	var domjs = require('domjs/lib/html5')(document);
 
@@ -55,7 +56,7 @@ You can save references to elements and operate on them later:
 	// append myul into other element
 	div(myul);
 
-You can access DOM elements directly, just invoke returned function with no  
+You can access DOM elements directly, just invoke returned function with no
 arguments
 
 	(myul() instanceof DOMElement) === true
@@ -72,8 +73,8 @@ Text nodes in main scope:
 
 	_text('my text');
 
-Elements with names that are reserved keywords in JavaScript language,  
-like 'var', should be created with preceding underscore added to its name:
+Elements with names that are reserved keywords in JavaScript language, like
+'var', should be created with preceding underscore added to its name:
 
 	_var('var content');
 
