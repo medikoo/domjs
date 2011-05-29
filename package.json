@@ -1,0 +1,24 @@
+{
+	"name": "domjs",
+	"version": "0.1.0",
+	"description": "Build dom structure easy way with plain js. Client and server side template engine",
+	"keywords": ["dom", "build", "builder", "template", "html"],
+	"author": "Mariusz Nowak <medikoo+domjs@medikoo.com> (http://www.medikoo.com/)",
+	"main": "lib/domjs",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/medikoo/domjs.git"
+	},
+	"bugs": {
+		"mail": "medikoo+domjs@medikoo.com",
+		"web": "https://github.com/medikoo/domjs/issues"
+	},
+	"scripts": { "test": "node test/run" },
+	"dependencies": { "es5-ext": "0.2.x" },
+	"devDependencies": {
+		"test": "0.1.x",
+		"expresso": "0.7.x",
+		"jslint": "0.1.x",
+		"jsdom": "0.2.x"
+	}
+}
