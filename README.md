@@ -33,7 +33,7 @@ JavaScript ?
 		footer('Footer stuff');
 	};
 
-This is how templates for domjs are written.  
+This is how templates for domjs are written.
 
 To get `mytemplate` function content turned into DOM
 (literally _DocumentFragment_):

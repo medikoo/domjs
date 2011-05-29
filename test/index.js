@@ -1,9 +1,6 @@
 'use strict';
 
-var indirectEval = eval;
-var global = indirectEval('this');
-
-var dom, d, t, handler, testLi;
+var dom, d, t, handler;
 
 handler = function () {};
 
