@@ -80,7 +80,8 @@ Elements with names that are reserved keywords in JavaScript language, like
 
 ## Tests
 
-When installed for node with npm (do _make install_ first)
+Before running tests make sure you have node and npm installed and you've run
+_make install_ first.
 
 	$ make test
 
