@@ -23,6 +23,8 @@ module.exports = function (t, a) {
 
 			late().setAttribute("foo", "bar");
 
+			_element('not-standard', "not standard content");
+
 			_text("text sibling");
 
 			_comment("comment sibling");
@@ -52,6 +54,10 @@ module.exports = function (t, a) {
 
 	dom = dom.nextSibling
 	a(dom.nodeName, 'var', "Reserved element name");
+
+	dom  = dom.nextSibling
+	a(dom.nodeName, 'not-standard', "Not standard element");
+	a(dom.firstChild.data, 'not standard content', "Not standard element content");
 
 	dom  = dom.nextSibling
 	a(dom.nodeType, 3, "Sibling text node");
