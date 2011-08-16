@@ -13,12 +13,12 @@
 		"mail": "medikoo+domjs@medikoo.com",
 		"web": "https://github.com/medikoo/domjs/issues"
 	},
-	"scripts": { "test": "node test/run" },
-	"dependencies": { "es5-ext": "0.2.x" },
+	"scripts": { "test": "./node_modules/tad/bin/tad lib" },
+	"dependencies": {
+		"es5-ext": "0.6.x"
+	},
 	"devDependencies": {
-		"test": "0.1.x",
-		"expresso": "0.7.x",
-		"jslint": "0.1.x",
-		"jsdom": "0.2.x"
+		"jsdom": "0.2.x",
+		"tad": "0.1.x"
 	}
 }
