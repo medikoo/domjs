@@ -4,7 +4,7 @@ var document = new (require('jsdom/lib/jsdom/level3/core')
 		.dom.level3.core.Document)();
 
 module.exports = function (t, a) {
-	var dom;
+	var dom, el1, el2;
 	dom = Object.create(t).init(['foo', 'bar', 'var']).init(document)
 		.build(function () {
 			var late;
@@ -24,6 +24,9 @@ module.exports = function (t, a) {
 			late().setAttribute("foo", "bar");
 
 			_element('not-standard', "not standard content");
+
+			_direct(el1 = document.createElement('div'),
+				el2 = document.createElement('p'));
 
 			_text("text sibling");
 
@@ -58,6 +61,12 @@ module.exports = function (t, a) {
 	dom  = dom.nextSibling
 	a(dom.nodeName, 'not-standard', "Not standard element");
 	a(dom.firstChild.data, 'not standard content', "Not standard element content");
+
+	dom  = dom.nextSibling
+	a(dom, el1, "Direct append #1");
+
+	dom  = dom.nextSibling
+	a(dom, el2, "Direct append #2");
 
 	dom  = dom.nextSibling
 	a(dom.nodeType, 3, "Sibling text node");
