@@ -4,14 +4,14 @@ var document = new (require('jsdom/lib/jsdom/level3/core')
 		.dom.level3.core.Document)();
 
 module.exports = function (t, a) {
-	var dom, el1, el2;
-	dom = Object.create(t).init(['foo', 'bar', 'var']).init(document)
-		.build(function () {
+	var dom, el1, el2, builder
+	builder = Object.create(t).init(['foo', 'bar', 'var']).init(document);
+	dom = builder.build(function () {
 			var late;
 
 			foo("foo text");
 
-			late = bar({ 'class': "test-class", other: "test-other" },
+			late = bar({ 'class': "test-class", other: "test-other", id: "internal" },
 				foo("raz"),
 				foo("dwa"),
 				foo("trzy"));
@@ -27,6 +27,7 @@ module.exports = function (t, a) {
 
 			_direct(el1 = document.createElement('div'),
 				el2 = document.createElement('p'));
+			el2.setAttribute('id', 'external');
 
 			_text("text sibling");
 
@@ -56,6 +57,8 @@ module.exports = function (t, a) {
 	a(dom.getAttribute('foo'), 'bar', "Direct attribute");
 
 	dom = dom.nextSibling
+	a(builder.getById('internal'),
+		dom.parentNode.removeChild(dom.previousSibling), "Internal id");
 	a(dom.nodeName, 'var', "Reserved element name");
 
 	dom  = dom.nextSibling
@@ -67,6 +70,7 @@ module.exports = function (t, a) {
 
 	dom  = dom.nextSibling
 	a(dom, el2, "Direct append #2");
+	a(builder.getById('external'), el2, "External id");
 
 	dom  = dom.nextSibling
 	a(dom.nodeType, 3, "Sibling text node");
@@ -81,4 +85,5 @@ module.exports = function (t, a) {
 	a(dom.data, 'cdata sibling', "Sibling CDATA content");
 
 	a(dom.nextSibling, null, "No unexpected DOM elements");
+
 };
