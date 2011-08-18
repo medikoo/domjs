@@ -5,7 +5,7 @@ var document = new (require('jsdom/lib/jsdom/level3/core')
 
 module.exports = function (t, a) {
 	var dom, handler = function () { };
-	a(t(document)(function () {
+	a(t(document).build(function () {
 		div({ onclick: handler });
 	}).firstChild.onclick, handler, "Function event handler");
 };
