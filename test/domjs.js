@@ -1,11 +1,12 @@
 'use strict';
 
 var document = new (require('jsdom/lib/jsdom/level3/core')
-		.dom.level3.core.Document)();
+		.dom.level3.core.Document)()
+  , pg = __dirname + '/__playground';
 
 module.exports = function (t, a) {
 	var dom, el1, el2, builder
-	builder = Object.create(t).init(['foo', 'bar', 'var']).init(document);
+	builder = Object.create(t).init(['foo', 'bar', 'var']).init(document, require);
 	dom = builder.build(function () {
 			var late;
 
@@ -86,4 +87,6 @@ module.exports = function (t, a) {
 
 	a(dom.nextSibling, null, "No unexpected DOM elements");
 
+	a(builder.build('./__playground/tpl').firstChild.textContent, 'By require',
+		"By require");
 };
