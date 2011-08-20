@@ -5,8 +5,9 @@ var document = new (require('jsdom/lib/jsdom/level3/core')
   , pg = __dirname + '/__playground';
 
 module.exports = function (t, a) {
-	var dom, el1, el2, builder
-	builder = Object.create(t).init(['foo', 'bar', 'var']).init(document, require);
+	var dom, el1, el2, builder;
+	builder = Object.create(t).init(['foo', 'bar', 'var'])
+		.init(document, require);
 	dom = builder.build(function () {
 			var late;
 
@@ -47,7 +48,7 @@ module.exports = function (t, a) {
 	a(dom.firstChild.nodeType, 3, "Append text node");
 	a(dom.firstChild.data, 'foo text', "Append text node content");
 
-	dom = dom.nextSibling
+	dom = dom.nextSibling;
 	a(dom.nodeType, 1, "Sibling element");
 	a(dom.nodeName, 'bar', "Sibling element name");
 	a(dom.getAttribute('class'), 'test-class', "Element attribute");
@@ -58,25 +59,26 @@ module.exports = function (t, a) {
 	a(dom.lastChild.textContent, 'pięć', "Late child content");
 	a(dom.getAttribute('foo'), 'bar', "Direct attribute");
 
-	dom = dom.nextSibling
+	dom = dom.nextSibling;
 	a(builder.getById('internal'),
 		dom.parentNode.removeChild(dom.previousSibling), "Internal id");
 	a(dom.nodeName, 'var', "Reserved element name");
 
-	dom  = dom.nextSibling
+	dom  = dom.nextSibling;
 	a(dom.nodeName, 'not-standard', "Not standard element");
-	a(dom.firstChild.data, 'not standard content', "Not standard element content");
+	a(dom.firstChild.data, 'not standard content',
+		"Not standard element content");
 	a(dom.getAttribute('foo'), 'foo', "Atribute set with boolean true");
 	a(dom.hasAttribute('bar'), false, "Atribute set with boolean false");
 
-	dom  = dom.nextSibling
+	dom  = dom.nextSibling;
 	a(dom, el1, "Direct append #1");
 
-	dom  = dom.nextSibling
+	dom  = dom.nextSibling;
 	a(dom, el2, "Direct append #2");
 	a(builder.getById('external'), el2, "External id");
 
-	dom  = dom.nextSibling
+	dom  = dom.nextSibling;
 	a(dom.nodeType, 3, "Sibling text node");
 	a(dom.data, 'text sibling', "Sibling text node content");
 
