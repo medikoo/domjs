@@ -24,7 +24,8 @@ module.exports = function (t, a) {
 
 			late().setAttribute("foo", "bar");
 
-			_element('not-standard', "not standard content");
+			_element('not-standard', { foo: true, bar: false },
+				"not standard content");
 
 			_direct(el1 = document.createElement('div'),
 				el2 = document.createElement('p'));
@@ -65,6 +66,8 @@ module.exports = function (t, a) {
 	dom  = dom.nextSibling
 	a(dom.nodeName, 'not-standard', "Not standard element");
 	a(dom.firstChild.data, 'not standard content', "Not standard element content");
+	a(dom.getAttribute('foo'), 'foo', "Atribute set with boolean true");
+	a(dom.hasAttribute('bar'), false, "Atribute set with boolean false");
 
 	dom  = dom.nextSibling
 	a(dom, el1, "Direct append #1");
