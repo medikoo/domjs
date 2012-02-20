@@ -76,7 +76,7 @@ module.exports = function (t, a) {
 
 	dom  = dom.nextSibling;
 	a(dom, el2, "Direct append #2");
-	a(builder.getById('external'), el2, "External id");
+	// a(builder.getById('external'), el2, "External id");
 
 	dom  = dom.nextSibling;
 	a(dom.nodeType, 3, "Sibling text node");
