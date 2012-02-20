@@ -11,7 +11,7 @@
 	},
 	"bugs": {
 		"mail": "medikoo+domjs@medikoo.com",
-		"web": "https://github.com/medikoo/domjs/issues"
+		"url": "https://github.com/medikoo/domjs/issues"
 	},
 	"scripts": {
 		"test": "./node_modules/tad/bin/tad lib"
