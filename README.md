@@ -80,11 +80,6 @@ Elements with names that are reserved keywords in JavaScript language, like
 
 ## Tests
 
-Before running tests make sure you have node and npm installed and you've run
-_make install_ first.
+As `jsdom` won't install properly on Windows domjs  can be tested only on *nix systems
 
-	$ make test
-
-Tests with coverage report:
-
-	$ make test-cov
+	$ npm test
