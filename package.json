@@ -15,7 +15,7 @@
 	},
 	"scripts": { "test": "./node_modules/tad/bin/tad lib" },
 	"dependencies": {
-		"es5-ext": "0.6.x"
+		"es5-ext": "0.7.x"
 	},
 	"devDependencies": {
 		"jsdom": "0.2.x",
