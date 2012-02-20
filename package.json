@@ -23,5 +23,6 @@
 	"devDependencies": {
 		"jsdom": "0.2.x",
 		"tad": "0.1.x"
-	}
+	},
+	"licence": "MIT"
 }
