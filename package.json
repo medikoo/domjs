@@ -14,7 +14,8 @@
 		"url": "https://github.com/medikoo/domjs/issues"
 	},
 	"scripts": {
-		"test": "./node_modules/tad/bin/tad lib"
+		"test": "node ./node_modules/tad/bin/tad lib",
+		"lint": "node ./node_modules/jslint/bin/jslint.js --color --git"
 	},
 	"dependencies": {
 		"es5-ext": "0.7.x"

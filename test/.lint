@@ -1,0 +1,1 @@
+predef+ __dirname, foo, bar, _var, _element, _direct, _text, _comment, _cdata, c, div

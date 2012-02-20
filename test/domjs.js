@@ -9,36 +9,36 @@ module.exports = function (t, a) {
 	builder = Object.create(t).init(['foo', 'bar', 'var'])
 		.init(document, require);
 	dom = builder.build(function () {
-			var late;
+		var late;
 
-			foo("foo text");
+		foo("foo text");
 
-			late = bar({ 'class': "test-class", other: "test-other", id: "internal" },
-				foo("raz"),
-				foo("dwa"),
-				foo("trzy"));
+		late = bar({ 'class': "test-class", other: "test-other", id: "internal" },
+			foo("raz"),
+			foo("dwa"),
+			foo("trzy"));
 
-			_var();
+		_var();
 
-			late(foo("cztery"));
-			late(foo("pięć"));
+		late(foo("cztery"));
+		late(foo("pięć"));
 
-			late().setAttribute("foo", "bar");
+		late().setAttribute("foo", "bar");
 
-			_element('not-standard', { foo: true, bar: false },
-				"not standard content");
+		_element('not-standard', { foo: true, bar: false },
+			"not standard content");
 
-			_direct(el1 = document.createElement('div'),
-				el2 = document.createElement('p'));
-			el2.setAttribute('id', 'external');
+		_direct(el1 = document.createElement('div'),
+			el2 = document.createElement('p'));
+		el2.setAttribute('id', 'external');
 
-			_text("text sibling");
+		_text("text sibling");
 
-			_comment("comment sibling");
+		_comment("comment sibling");
 
-			_cdata("cdata sibling");
+		_cdata("cdata sibling");
 
-		});
+	});
 
 	a(dom && dom.nodeType, 11, "Expect document fragment");
 
