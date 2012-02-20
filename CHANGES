@@ -11,6 +11,7 @@ v0.2.0  --  2012.02.20
 * Warn when two same ids are spotted twice
 * Tests with TAD
 * JSLint validation
+* Travis CI configuration
 
 v0.1.0  --  2011.05.29
 * Initial version
