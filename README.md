@@ -1,15 +1,19 @@
 # domjs - client and server side dom template engine
 
 Build dom structure easy way with plain JavaScript. Can be used on both client
-and server side. Due to its small footprint it's best suited for small projects.
+and server side.
 
 ## Instalation
 
-When using node:
+### Node.js
+
+In your project path:
 
 	$ npm install domjs
 
-_Instructions for browser side installation on the way._
+### Browser
+
+You can easily create browser bundle with help of [modules-webmake](https://github.com/medikoo/modules-webmake). Mind that it relies on some EcmaScript5 features, so for older browsers you need as well [es5-shim](https://github.com/kriskowal/es5-shim)
 
 ## Usage
 
@@ -78,7 +82,7 @@ Elements with names that are reserved keywords in JavaScript language, like
 
 	_var('var content');
 
-## Tests [![Build Status](https://secure.travis-ci.org/medikoo/domjs.png?branch=master)](https://secure.travis-ci.org/medikoo/domjs.png?branch=master)
+## Tests [![Build Status](https://secure.travis-ci.org/medikoo/domjs.png?branch=master)](https://secure.travis-ci.org/medikoo/domjs)
 
 As `jsdom` won't install properly on Windows domjs can only be tested only on _*nix_ systems
 
