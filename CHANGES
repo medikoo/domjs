@@ -1,0 +1,16 @@
+v0.2.0  --  2012.02.20
+* Return builder object not just `build` function. Allows better customization
+* Templetes can be imported via custom `require` function
+* In html5 mode mark function (on*) attributes with string value as well so they
+  can be picked up by CSS rules easily
+* Support array, number as argument
+* Support for null or undefined as argument (it's ignored then)
+* Expose all functions on `_map` property
+* String argument as optional in `_text`, `_comment` and `_cdata` methods
+* Generic `_element` function
+* Warn when two same ids are spotted twice
+* Tests with TAD
+* JSLint validation
+
+v0.1.0  --  2011.05.29
+* Initial version
