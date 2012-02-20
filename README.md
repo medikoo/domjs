@@ -78,7 +78,7 @@ Elements with names that are reserved keywords in JavaScript language, like
 
 	_var('var content');
 
-## Tests
+## Tests [![Build Status](https://secure.travis-ci.org/medikoo/domjs.png)](https://secure.travis-ci.org/medikoo/domjs.png)
 
 As `jsdom` won't install properly on Windows domjs  can be tested only on *nix systems
 
