@@ -44,7 +44,7 @@ To get `mytemplate` function content turned into DOM
 
 	var domjs = require('domjs/lib/html5')(document);
 
-	var mydom = domjs(mytemplate);
+	var mydom = domjs.build(mytemplate);
 
 ### Other notes
 
