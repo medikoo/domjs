@@ -20,67 +20,83 @@ You can easily create browser bundle with help of [modules-webmake](https://gith
 What would be the easiest, most intuitive way to build html5 DOM tree with plain
 JavaScript ?
 
-	var mytemplate = function () {
-		header(
-			h1('Heading'),
-			h2('Subheading'));
+```javascript
+var mytemplate = function () {
+  header(
+    h1('Heading'),
+    h2('Subheading'));
 
-		nav(
-			ul({ 'class': 'breadcrumbs' },
-				li(a({ href: '/' }, 'Home')),
-				li(a({ href: '/section/'}, 'Section')),
-				li(a('Subject'))));
+  nav(
+    ul({ 'class': 'breadcrumbs' },
+      li(a({ href: '/' }, 'Home')),
+      li(a({ href: '/section/'}, 'Section')),
+      li(a('Subject'))));
 
-		article(
-			p('Lorem ipsum...'));
+  article(
+    p('Lorem ipsum...'));
 
-		footer('Footer stuff');
-	};
+  footer('Footer stuff');
+};
+```
 
 This is how templates for domjs are written.
 
 To get `mytemplate` function content turned into DOM
 (literally _DocumentFragment_):
 
-	var domjs = require('domjs/lib/html5')(document);
+```javascript
+var domjs = require('domjs/lib/html5')(document);
 
-	var mydom = domjs.build(mytemplate);
+var mydom = domjs.build(mytemplate);
+```
 
 ### Other notes
 
 You can save references to elements and operate on them later:
 
-	var myul = ul(li('one'), li('two'), li('three'));
+```javascript
+var myul = ul(li('one'), li('two'), li('three'));
 
-	// ... some code ...
+// ... some code ...
 
-	// add extra items to myul
-	myul(li('four'), li('five));
+// add extra items to myul
+myul(li('four'), li('five'));
 
-	// append myul into other element
-	div(myul);
+// append myul into other element
+div(myul);
+```
 
 You can access DOM elements directly, just invoke returned function with no
 arguments
 
-	(myul() instanceof DOMElement) === true
+```javascript
+(myul() instanceof DOMElement) === true
+```
 
 Comment type nodes:
 
-	_comment('my comment');
+```javascript
+_comment('my comment');
+```
 
 CDATA type nodes
 
-	_cdata('cdata text');
+```javascript
+_cdata('cdata text');
+```
 
 Text nodes in main scope:
 
-	_text('my text');
+```javascript
+_text('my text');
+```
 
 Elements with names that are reserved keywords in JavaScript language, like
 'var', should be created with preceding underscore added to its name:
 
-	_var('var content');
+```javascript
+_var('var content');
+```
 
 ## Tests [![Build Status](https://secure.travis-ci.org/medikoo/domjs.png?branch=master)](https://secure.travis-ci.org/medikoo/domjs)
 
