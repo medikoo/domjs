@@ -18,7 +18,7 @@
 		"lint": "node ./node_modules/jslint/bin/jslint.js --color --git"
 	},
 	"dependencies": {
-		"es5-ext": "0.7.x"
+		"es5-ext": "git://github.com/medikoo/es5-ext.git"
 	},
 	"devDependencies": {
 		"jsdom": "0.2.x",
