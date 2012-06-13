@@ -1,3 +1,7 @@
+v0.2.2  --  2012.06.13
+* Quick fix for totally broken v0.2.1. Mistakenly published package that was not
+  fully updated up to changes in es5-ext project.
+
 v0.2.1  --  2012.06.13
 * Fix array-like object detection when processing child node arguments
 * Update up to v0.8 branch of es5-ext
