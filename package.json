@@ -1,28 +1,38 @@
 {
-	"name": "domjs",
-	"version": "0.2.0",
-	"description": "Build dom structure easy way with plain js. Client and server side template engine",
-	"keywords": ["dom", "build", "builder", "template", "html"],
-	"author": "Mariusz Nowak <medikoo+domjs@medikoo.com> (http://www.medikoo.com/)",
-	"main": "lib/domjs",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/medikoo/domjs.git"
-	},
-	"bugs": {
-		"mail": "medikoo+domjs@medikoo.com",
-		"url": "https://github.com/medikoo/domjs/issues"
-	},
-	"scripts": {
-		"test": "node ./node_modules/tad/bin/tad lib",
-		"lint": "node ./node_modules/jslint/bin/jslint.js --color --git"
-	},
-	"dependencies": {
-		"es5-ext": "git://github.com/medikoo/es5-ext.git"
-	},
-	"devDependencies": {
-		"jsdom": "0.2.x",
-		"tad": "0.1.x"
-	},
-	"licence": "MIT"
+  "name": "domjs",
+  "version": "0.2.0",
+  "description": "Build dom structure easy way with plain js. Client and server side template engine",
+  "keywords": [
+    "dom",
+    "build",
+    "builder",
+    "template",
+    "html"
+  ],
+  "author": "Mariusz Nowak <medikoo+domjs@medikoo.com> (http://www.medikoo.com/)",
+  "main": "lib/domjs",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/medikoo/domjs.git"
+  },
+  "bugs": {
+    "email": "medikoo+domjs@medikoo.com",
+    "url": "https://github.com/medikoo/domjs/issues"
+  },
+  "scripts": {
+    "test": "node ./node_modules/tad/bin/tad lib",
+    "lint": "node ./node_modules/jslint/bin/jslint.js --color --git"
+  },
+  "dependencies": {
+    "es5-ext": "git://github.com/medikoo/es5-ext.git"
+  },
+  "devDependencies": {
+    "jsdom": "0.2.x",
+    "tad": "0.1.x"
+  },
+  "licence": "MIT",
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
 }
