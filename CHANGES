@@ -1,3 +1,8 @@
+v0.2.1  --  2012.06.13
+* Fix array-like object detection when processing child node arguments
+* Update up to v0.8 branch of es5-ext
+* package.json now in npm friendly format
+
 v0.2.0  --  2012.02.20
 * Return builder object not just `build` function. Allows better customization
 * Templetes can be imported via custom `require` function

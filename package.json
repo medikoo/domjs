@@ -1,6 +1,6 @@
 {
   "name": "domjs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Build dom structure easy way with plain js. Client and server side template engine",
   "keywords": [
     "dom",
