@@ -10,7 +10,7 @@
     "template",
     "html"
   ],
-  "main": "lib/domjs",
+  "main": "lib/html5",
   "repository": {
     "type": "git",
     "url": "git://github.com/medikoo/domjs.git"
