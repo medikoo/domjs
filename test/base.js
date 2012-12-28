@@ -1,46 +1,49 @@
 'use strict';
 
-var document = new (require('jsdom/lib/jsdom/level3/core')
-		.dom.level3.core.Document)()
-  , pg = __dirname + '/__playground';
+var isDF = require('dom-ext/lib/DocumentFragment/is-document-fragment');
 
 module.exports = function (t, a) {
-	var dom, el1, el2, builder;
-	builder = Object.create(t).init(['foo', 'bar', 'var'])
-		.init(document, require);
-	dom = builder.build(function () {
+	var dom, el1, el2, domjs, ns;
+
+	if (typeof document === 'undefined') return;
+
+	domjs = t(document, ['foo', 'bar', 'var']);
+
+	ns = domjs.ns;
+	dom = domjs.collect(function () {
 		var late;
 
-		foo("foo text");
+		ns.foo("foo text");
 
-		late = bar({ 'class': "test-class", other: "test-other", id: "internal" },
-			foo("raz"),
-			foo("dwa"),
-			foo("trzy"));
+		late = ns.bar({ 'class': "test-class", other: "test-other",
+			id: "internal" },
+			ns.foo("raz"),
+			ns.foo("dwa"),
+			ns.foo("trzy"));
 
-		_var();
+		ns._var();
 
-		late(foo("cztery"));
-		late(foo("pięć"));
+		late(ns.foo("cztery"));
+		late(ns.foo("pięć"));
 
-		late().setAttribute("foo", "bar");
+		late.el.setAttribute("foo", "bar");
 
-		_element('not-standard', { foo: true, bar: false },
+		ns._element('not-standard', { foo: true, bar: false },
 			"not standard content");
 
-		_direct(el1 = document.createElement('div'),
+		ns._insert(el1 = document.createElement('div'),
 			el2 = document.createElement('p'));
 		el2.setAttribute('id', 'external');
 
-		_text("text sibling");
+		ns._text("text sibling");
 
-		_comment("comment sibling");
+		ns._comment("comment sibling");
 
-		_cdata("cdata sibling");
+		ns._cdata("cdata sibling");
 
 	});
 
-	a(dom && dom.nodeType, 11, "Expect document fragment");
+	a(isDF(dom), true, "Expect document fragment");
 
 	dom = dom.firstChild;
 	a(dom.nodeName, 'foo', "Match firstChild");
@@ -60,8 +63,6 @@ module.exports = function (t, a) {
 	a(dom.getAttribute('foo'), 'bar', "Direct attribute");
 
 	dom = dom.nextSibling;
-	a(builder.getById('internal'),
-		dom.parentNode.removeChild(dom.previousSibling), "Internal id");
 	a(dom.nodeName, 'var', "Reserved element name");
 
 	dom  = dom.nextSibling;
@@ -72,11 +73,10 @@ module.exports = function (t, a) {
 	a(dom.hasAttribute('bar'), false, "Atribute set with boolean false");
 
 	dom  = dom.nextSibling;
-	a(dom, el1, "Direct append #1");
+	a(dom, el1, "Insert append #1");
 
 	dom  = dom.nextSibling;
-	a(dom, el2, "Direct append #2");
-	// a(builder.getById('external'), el2, "External id");
+	a(dom, el2, "Insert append #2");
 
 	dom  = dom.nextSibling;
 	a(dom.nodeType, 3, "Sibling text node");
@@ -91,7 +91,4 @@ module.exports = function (t, a) {
 	a(dom.data, 'cdata sibling', "Sibling CDATA content");
 
 	a(dom.nextSibling, null, "No unexpected DOM elements");
-
-	a(builder.build('./__playground/tpl').firstChild.textContent, 'By require',
-		"By require");
 };

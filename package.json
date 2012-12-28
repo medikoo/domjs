@@ -1,7 +1,8 @@
 {
   "name": "domjs",
-  "version": "0.2.2",
-  "description": "Build dom structure easy way with plain js. Client and server side template engine",
+  "version": "0.3.0",
+  "author": "Mariusz Nowak <medikoo+domjs@medikoo.com> (http://www.medikoo.com/)",
+  "description": "DOM template engine for client and server",
   "keywords": [
     "dom",
     "build",
@@ -9,29 +10,23 @@
     "template",
     "html"
   ],
-  "author": "Mariusz Nowak <medikoo+domjs@medikoo.com> (http://www.medikoo.com/)",
   "main": "lib/domjs",
   "repository": {
     "type": "git",
     "url": "git://github.com/medikoo/domjs.git"
   },
-  "bugs": {
-    "email": "medikoo+domjs@medikoo.com",
-    "url": "https://github.com/medikoo/domjs/issues"
-  },
   "scripts": {
     "test": "node ./node_modules/tad/bin/tad lib"
   },
   "dependencies": {
-    "es5-ext": "0.8.x"
+    "es5-ext": "~0.9.1",
+    "dom-ext": "git://github.com/medikoo/dom-ext"
+  },
+  "optionalDependencies": {
+    "jsdom": "~0.3.3"
   },
   "devDependencies": {
-    "jsdom": "0.2.x",
-    "tad": "0.1.x"
+    "tad": "~0.1.12"
   },
-  "licence": "MIT",
-  "optionalDependencies": {},
-  "engines": {
-    "node": ">=0.4"
-  }
+  "licence": "MIT"
 }
