@@ -3,44 +3,32 @@
 var isDF = require('dom-ext/lib/DocumentFragment/is-document-fragment');
 
 module.exports = function (t, a) {
-	var dom, el1, el2, domjs, ns;
+	var dom, domjs, ns;
 
 	if (typeof document === 'undefined') return;
 
-	domjs = t(document, ['foo', 'bar', 'var']);
+	domjs = t(document);
 
-	ns = domjs.ns;
+	ns = domjs;
 	dom = domjs.collect(function () {
 		var late;
 
-		ns.foo("foo text");
+		ns.element('foo', "foo text");
 
-		late = ns.bar({ 'class': "test-class", other: "test-other",
+		late = ns.element('bar', { 'class': "test-class", other: "test-other",
 			id: "internal" },
-			ns.foo("raz"),
-			ns.foo("dwa"),
-			ns.foo("trzy"));
+			ns.element('foo', "raz"),
+			ns.element('foo', "dwa"),
+			ns.element('foo', "trzy"));
 
-		ns._var();
+		late.extend(ns.element('foo', "cztery"));
+		late.extend(ns.element('foo', "pięć"));
 
-		late(ns.foo("cztery"));
-		late(ns.foo("pięć"));
+		late.setAttribute("foo", "bar");
 
-		late.el.setAttribute("foo", "bar");
+		ns.text("text sibling");
 
-		ns._element('not-standard', { foo: true, bar: false },
-			"not standard content");
-
-		ns._insert(el1 = document.createElement('div'),
-			el2 = document.createElement('p'));
-		el2.setAttribute('id', 'external');
-
-		ns._text("text sibling");
-
-		ns._comment("comment sibling");
-
-		ns._cdata("cdata sibling");
-
+		ns.comment("comment sibling");
 	});
 
 	a(isDF(dom), true, "Expect document fragment");
@@ -62,22 +50,6 @@ module.exports = function (t, a) {
 	a(dom.lastChild.textContent, 'pięć', "Late child content");
 	a(dom.getAttribute('foo'), 'bar', "Direct attribute");
 
-	dom = dom.nextSibling;
-	a(dom.nodeName, 'var', "Reserved element name");
-
-	dom  = dom.nextSibling;
-	a(dom.nodeName, 'not-standard', "Not standard element");
-	a(dom.firstChild.data, 'not standard content',
-		"Not standard element content");
-	a(dom.getAttribute('foo'), 'foo', "Atribute set with boolean true");
-	a(dom.hasAttribute('bar'), false, "Atribute set with boolean false");
-
-	dom  = dom.nextSibling;
-	a(dom, el1, "Insert append #1");
-
-	dom  = dom.nextSibling;
-	a(dom, el2, "Insert append #2");
-
 	dom  = dom.nextSibling;
 	a(dom.nodeType, 3, "Sibling text node");
 	a(dom.data, 'text sibling', "Sibling text node content");
@@ -85,10 +57,6 @@ module.exports = function (t, a) {
 	dom = dom.nextSibling;
 	a(dom.nodeType, 8, "Sibling comment");
 	a(dom.data, 'comment sibling', "Sibling comment content");
-
-	dom = dom.nextSibling;
-	a(dom.nodeType, 4, "Sibling CDATA");
-	a(dom.data, 'cdata sibling', "Sibling CDATA content");
 
 	a(dom.nextSibling, null, "No unexpected DOM elements");
 };

@@ -20,12 +20,11 @@
   },
   "dependencies": {
     "es5-ext": "~0.9.1",
+    "event-emitter": "~0.2.1",
     "dom-ext": "git://github.com/medikoo/dom-ext"
   },
-  "optionalDependencies": {
-    "jsdom": "~0.3.3"
-  },
   "devDependencies": {
+    "jsdom": "~0.3.3",
     "tad": "~0.1.12"
   },
   "licence": "MIT"

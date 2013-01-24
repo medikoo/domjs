@@ -9,14 +9,14 @@ module.exports = function (t, a) {
 
 	domjs = t(document);
 
-	ns = domjs.ns;
+	ns = domjs;
 	dom = domjs.collect(function () {
 		ns.div("foo text");
 
 		ns.p({ 'class': "test-class", other: "test-other", id: "internal" },
 			ns.span("raz"),
 			ns.span("dwa"),
-			ns._text("trzy"));
+			ns.text("trzy"));
 	});
 
 	a(isDF(dom), true, "Expect document fragment");
