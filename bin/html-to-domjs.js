@@ -5,7 +5,7 @@
 var writeFile  = require('fs').writeFile
   , resolve    = require('path').resolve
   , jsdom      = require('jsdom')
-  , domToDomJS = require('../lib/tools/dom-to-domjs')
+  , domToDomJS = require('../scripts/dom-to-domjs')
 
   , optimist = require('optimist')
 	.usage("usage: $0 [options] <input>", {
