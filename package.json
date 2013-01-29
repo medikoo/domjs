@@ -24,6 +24,7 @@
     "dom-ext": "git://github.com/medikoo/dom-ext"
   },
   "devDependencies": {
+    "commander": "~1.1",
     "jsdom": "~0.3.3",
     "tad": "~0.1.12"
   },

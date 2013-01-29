@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var writeFile  = require('fs').writeFile
+  , resolve    = require('path').resolve
+  , jsdom      = require('jsdom')
+  , domToDomJS = require('../scripts/dom-to-domjs')
+
+  , program;
+
+program  = require('commander')
+	.usage('[options] <file ...>')
+	.option('--output <path>', "Filename at which result should be saved")
+	.parse(process.argv);
+
+if (!program.args.length) {
+	console.log(program.helpInformation());
+	process.exit(1);
+}
+
+jsdom.env(resolve(program.args[0]), function (errors, window) {
+	if (errors) throw errors;
+	if (!program.output) {
+		console.log(domToDomJS(window.document.body));
+		return;
+	}
+	writeFile(resolve(program.output), domToDomJS(window.document.body),
+		function (err) {
+			if (err) throw err;
+		});
+});
