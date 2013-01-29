@@ -20,13 +20,16 @@ if (!program.args.length) {
 }
 
 jsdom.env(resolve(program.args[0]), function (errors, window) {
+	var data;
 	if (errors) throw errors;
+	data = domToDomJS(window.document.body);
 	if (!program.output) {
-		console.log(domToDomJS(window.document.body));
+		console.log(data);
 		return;
 	}
-	writeFile(resolve(program.output), domToDomJS(window.document.body),
+	writeFile(resolve(program.output), data,
 		function (err) {
 			if (err) throw err;
+			console.log("html2domjs OK [" + (data.length / 1024).toFixed(2) + "kB]");
 		});
 });
