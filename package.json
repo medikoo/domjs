@@ -10,7 +10,7 @@
     "html"
   ],
   "author": "Mariusz Nowak <medikoo+domjs@medikoo.com> (http://www.medikoo.com/)",
-  "main": "lib/domjs",
+  "main": "lib/html5",
   "repository": {
     "type": "git",
     "url": "git://github.com/medikoo/domjs.git"
