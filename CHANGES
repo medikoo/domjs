@@ -1,3 +1,9 @@
+v0.2.3  --  2013.02.13
+Two crucial fixes to v0.2 branch:
+* Fix entry script path in package.json
+* Do not use Object.freeze (it was used wrong way and broke implementation).
+  We weren't aware of that as older version of V8 didn't support Object.freeze
+
 v0.2.2  --  2012.06.13
 * Quick fix for totally broken v0.2.1. Mistakenly published package that was not
   fully updated up to changes in es5-ext project.
