@@ -4,13 +4,17 @@ var compact = require('es5-ext/lib/Array/prototype/compact')
   , repeat  = require('es5-ext/lib/String/prototype/repeat')
 
   , map = Array.prototype.map
-  , childNodes, attributes, element, text
+  , childNodes, attributes, element, text, text2
 
   , re = /^[a-zA-z][a-zA-Z0-9]*$/;
 
 text = function (str) {
 	return '\'' + str.replace(/\\/g, '\\\\').replace(/\n/g, '\\n')
 		.replace(/'/g, '\\\'') + '\'';
+};
+text2 = function (str) {
+	return '"' + str.replace(/\\/g, '\\\\').replace(/\n/g, '\\n')
+		.replace(/"/g, '\\"') + '"';
 };
 
 attributes = function (attrs) {
@@ -32,7 +36,7 @@ childNodes = function (nodes, nest, doBreak) {
 		}
 		if ((type === 3) || (type === 4)) {
 			if (node.data.trim()) {
-				str = (idx ? ' ' : '') + text(node.data.trim());
+				str = (idx ? ' ' : '') + text2(node.data.trim());
 				firstDone = true;
 				return str;
 			}
