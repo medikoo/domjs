@@ -1,7 +1,8 @@
 'use strict';
 
-var compact = require('es5-ext/lib/Array/prototype/compact')
-  , repeat  = require('es5-ext/lib/String/prototype/repeat')
+var compact    = require('es5-ext/lib/Array/prototype/compact')
+  , startsWith = require('es5-ext/lib/String/prototype/starts-with')
+  , repeat     = require('es5-ext/lib/String/prototype/repeat')
 
   , map = Array.prototype.map
   , childNodes, attributes, element, text, text2
@@ -18,10 +19,14 @@ text2 = function (str) {
 };
 
 attributes = function (attrs) {
-	return '{ ' + map.call(attrs, function (attr) {
+	attrs = compact.call(map.call(attrs, function (attr) {
+		if (startsWith.call(attr.name, 'data-')) return null;
 		return (!re.test(attr.name) ? ('\'' + attr.name + '\'') : attr.name) +
 			': ' + text(attr.value);
-	}).join(', ') + ' }';
+	}));
+
+	if (!attrs.length) return null;
+	return '{ ' + attrs.join(', ') + ' }';
 };
 
 childNodes = function (nodes, nest, doBreak) {
