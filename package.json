@@ -21,7 +21,8 @@
   "dependencies": {
     "es5-ext": "~0.9.1",
     "event-emitter": "~0.2.1",
-    "dom-ext": "git://github.com/medikoo/dom-ext"
+    "dom-ext": "git://github.com/medikoo/dom-ext",
+    "memoizee": "git://github.com/medikoo/memoizee"
   },
   "devDependencies": {
     "commander": "~1.1",
