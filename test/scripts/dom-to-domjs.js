@@ -11,5 +11,5 @@ module.exports = function (t, a) {
 	body.setAttribute('foo', 'bar');
 	body.appendChild(document.createTextNode('elo'));
 
-	a(t(html), 'html(body({ foo: \'bar\' }, \'elo\'))');
+	a(t(html), 'html(body({ foo: \'bar\' }, \"elo\"))');
 };
