@@ -16,7 +16,7 @@
     "url": "git://github.com/medikoo/domjs.git"
   },
   "scripts": {
-    "test": "node ./node_modules/tad/bin/tad lib"
+    "test": "node ./node_modules/tad/bin/tad"
   },
   "dependencies": {
     "es5-ext": "~0.9.1",
