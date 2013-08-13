@@ -11,7 +11,6 @@ var toArray       = require('es5-ext/lib/Array/from')
   , isNode        = require('dom-ext/lib/Node/is-node')
   , validNode     = require('dom-ext/lib/Node/valid-node')
   , ext           = require('./ext')
-  , getDirectives = require('./get-directives')
   , construct     = require('./_construct-element')
 
   , slice = Array.prototype.slice
@@ -26,6 +25,9 @@ module.exports = Base = function (document) {
 	this.document = validDocument(document);
 	defineProperties(this, {
 		_current: d(document.createDocumentFragment()),
+		_directives: d(create(null, {
+			_element: d(create(null))
+		})),
 		ns: d(create(this.ns, { _domjs: d(this) }))
 	});
 };
@@ -67,7 +69,7 @@ Object.defineProperties(Base.prototype, extend({
 			defineProperty(proto, name, d(value));
 		});
 		return proto;
-	})
+	}),
 }), memoize(function (name) {
 	var proto = create(getPrototypeOf(this.document.createElement(name)));
 	forEach(ext._element, function (value, name) {
@@ -80,10 +82,12 @@ Object.defineProperties(Base.prototype, extend({
 	}
 	defineProperties(proto, {
 		domjs: d(this),
-		_directives: d(getDirectives(name))
+		_directives: d(this.getDirectives(name))
 	});
 	return proto;
-}, { method: '_elementProto' }), {
+}, { method: '_elementProto' }), memoize(function (name) {
+	return (this._directives[name] = create(this._directives._element));
+}, { method: 'getDirectives' }), {
 	ns: d(create(null, d.binder({
 		comment: d(function (data) {
 			var el = this._current.appendChild(this.document.createComment(data));
