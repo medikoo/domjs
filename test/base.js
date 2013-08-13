@@ -9,7 +9,7 @@ module.exports = function (t, a) {
 
 	domjs = t(document);
 
-	ns = domjs;
+	ns = domjs.ns;
 	dom = domjs.collect(function () {
 		var late;
 

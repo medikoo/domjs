@@ -35,8 +35,9 @@ module.exports = HTML5 = function (document) {
 };
 
 HTML5.prototype = Object.create(Base.prototype, extend({
-	constructor: d(HTML5)
-}, d.binder(elements)));
+	constructor: d(HTML5),
+	ns: d(Object.create(Base.prototype.ns, d.binder(elements, '_domjs')))
+}));
 
 extend(require('./ext'), {
 	ul:     require('./ext/html5/ul'),
