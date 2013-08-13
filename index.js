@@ -20,7 +20,7 @@ var d              = require('es5-ext/lib/Object/descriptor')
 	'select', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary',
 	'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time',
 	'tr', 'track', 'ul', 'var', 'video', 'wbr'].forEach(function (name) {
-	elements[name] = d(function () {
+	elements[name] = d('cew', function () {
 		var el = this._current.appendChild(this.document.createElement(name));
 		el.__proto__ = this._elementProto(name);
 		construct(el, arguments);

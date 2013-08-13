@@ -89,25 +89,25 @@ Object.defineProperties(Base.prototype, extend({
 	return (this._directives[name] = create(this._directives._element));
 }, { method: 'getDirectives' }), {
 	ns: d(create(null, d.binder({
-		comment: d(function (data) {
+		comment: d('cew', function (data) {
 			var el = this._current.appendChild(this.document.createComment(data));
 			el.__proto__ = this._commentProto;
 			if (el._construct) el._construct.apply(el, slice.call(arguments, 1));
 			return el;
 		}),
-		text: d(function (data/* …data*/) {
+		text: d('cew', function (data/* …data*/) {
 			var el = this._current.appendChild(this.document.createTextNode(data));
 			el.__proto__ = this._textProto;
 			if (el._construct) el._construct.apply(el, slice.call(arguments, 1));
 			return el;
 		}),
-		element: d(function (name/*[, attributes], …content*/) {
+		element: d('cew', function (name/*[, attributes], …content*/) {
 			var el = this._current.appendChild(this.document.createElement(name));
 			el.__proto__ = this._elementProto(name);
 			construct(el, slice.call(arguments, 1));
 			return el;
 		}),
-		normalize: d(function (node) {
+		normalize: d('cew', function (node) {
 			var name = validNode(node).nodeName.toLowerCase();
 			if (name === '#text') node.__proto__ = this._textProto;
 			else if (name === '#comment') node.__proto__ = this._commentProto;
@@ -115,7 +115,7 @@ Object.defineProperties(Base.prototype, extend({
 			else throw new TypeError("Unsupported node type");
 			return node;
 		}),
-		insert: d(function (node/*, …nodes*/) {
+		insert: d('cew', function (node/*, …nodes*/) {
 			var dom = normalize.apply(this.document, arguments), result;
 			if (isDF(dom)) result = toArray(dom.childNodes);
 			else result = dom;
