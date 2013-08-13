@@ -100,15 +100,11 @@ Object.defineProperties(Base.prototype, extend({
 		return el;
 	}),
 	normalize: d(function (node) {
-		var name = validNode(node).nodeName, proto;
-		if (name[0] === '#') {
-			name = name.slice(1);
-			proto = this['_' + name + '_'];
-			if (!proto) throw new Error("Cannot normalize: " + node);
-		} else if (!(proto = this['_' + name + '_'])) {
-			proto = this._element_(name);
-		}
-		node.__proto__ = proto;
+		var name = validNode(node).nodeName.toLowerCase();
+		if (name === '#text') node.__proto__ = this._textProto;
+		else if (name === '#comment') node.__proto__ = this._commentProto;
+		else if (name[0] !== '#') node.__proto = this._elementProto(name);
+		else throw new TypeError("Unsupported node type");
 		return node;
 	}),
 	insert: d(function (node/*, …nodes*/) {
