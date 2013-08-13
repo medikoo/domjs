@@ -24,7 +24,7 @@ require('memoizee/lib/ext/method');
 module.exports = Base = function (document) {
 	if (!(this instanceof Base)) return new Base(document);
 	this.document = validDocument(document);
-	defineProperty(this, '_current', d('cw', document.createDocumentFragment()));
+	defineProperty(this, '_current', d(document.createDocumentFragment()));
 };
 Object.defineProperties(Base.prototype, extend({
 	collect: d(function (fn) {
