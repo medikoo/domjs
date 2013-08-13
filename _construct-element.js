@@ -18,7 +18,7 @@ module.exports = function (el, args) {
 		if (directives) {
 			attrs = copy(attrs);
 			keys(directives).forEach(function (name) { delete attrs[name]; });
-			args = slice.call(arguments, 1);
+			args = slice.call(args, 1);
 			args.unshift(attrs);
 		}
 	}
