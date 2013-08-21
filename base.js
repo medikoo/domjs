@@ -111,7 +111,7 @@ Object.defineProperties(Base.prototype, extend({
 			var name = validNode(node).nodeName.toLowerCase();
 			if (name === '#text') node.__proto__ = this._textProto;
 			else if (name === '#comment') node.__proto__ = this._commentProto;
-			else if (name[0] !== '#') node.__proto = this._elementProto(name);
+			else if (name[0] !== '#') node.__proto__ = this._elementProto(name);
 			else throw new TypeError("Unsupported node type");
 			return node;
 		}),
