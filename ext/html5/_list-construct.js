@@ -1,8 +1,8 @@
 'use strict';
 
-var isFunction     = require('es5-ext/lib/Function/is-function')
-  , isList         = require('es5-ext/lib/Object/is-list')
-  , isPlainObject  = require('es5-ext/lib/Object/is-plain-object')
+var isFunction     = require('es5-ext/function/is-function')
+  , isList         = require('es5-ext/object/is-list')
+  , isPlainObject  = require('es5-ext/object/is-plain-object')
   , makeElement    = require('dom-ext/lib/Document/prototype/make-element')
   , castAttributes = require('dom-ext/lib/Element/prototype/cast-attributes')
   , elExtend       = require('dom-ext/lib/Element/prototype/extend')

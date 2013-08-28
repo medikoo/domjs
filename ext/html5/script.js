@@ -1,7 +1,7 @@
 'use strict';
 
-var isFunction     = require('es5-ext/lib/Function/is-function')
-  , isPlainObject  = require('es5-ext/lib/Object/is-plain-object')
+var isFunction     = require('es5-ext/function/is-function')
+  , isPlainObject  = require('es5-ext/object/is-plain-object')
   , castAttributes = require('dom-ext/lib/Element/prototype/cast-attributes')
   , genScript = require('dom-ext/lib/HTMLDocument/generate-inline-script-text');
 

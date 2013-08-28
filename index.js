@@ -1,7 +1,7 @@
 'use strict';
 
-var d              = require('es5-ext/lib/Object/descriptor')
-  , extend         = require('es5-ext/lib/Object/extend')
+var d              = require('es5-ext/object/descriptor')
+  , extend         = require('es5-ext/object/extend')
   , validDocument  = require('dom-ext/lib/Document/valid-document')
   , Base           = require('./base')
   , construct      = require('./_construct-element')

@@ -1,6 +1,6 @@
 'use strict';
 
-var extend   = require('es5-ext/lib/Object/extend')
+var extend   = require('es5-ext/object/extend')
   , elExtend = require('dom-ext/lib/Element/prototype/extend')
   , exclude  = require('dom-ext/lib/Element/prototype/exclude')
   , include  = require('dom-ext/lib/Element/prototype/include')

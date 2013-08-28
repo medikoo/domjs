@@ -1,8 +1,8 @@
 'use strict';
 
-var copy          = require('es5-ext/lib/Object/copy')
-  , forEach       = require('es5-ext/lib/Object/for-each')
-  , isPlainObject = require('es5-ext/lib/Object/is-plain-object')
+var copy          = require('es5-ext/object/copy')
+  , forEach       = require('es5-ext/object/for-each')
+  , isPlainObject = require('es5-ext/object/is-plain-object')
 
   , slice = Array.prototype.slice, keys = Object.keys;
 

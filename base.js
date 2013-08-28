@@ -1,9 +1,9 @@
 'use strict';
 
-var toArray       = require('es5-ext/lib/Array/from')
-  , d             = require('es5-ext/lib/Object/descriptor')
-  , extend        = require('es5-ext/lib/Object/extend')
-  , forEach       = require('es5-ext/lib/Object/for-each')
+var toArray       = require('es5-ext/array/from')
+  , d             = require('es5-ext/object/descriptor')
+  , extend        = require('es5-ext/object/extend')
+  , forEach       = require('es5-ext/object/for-each')
   , memoize       = require('memoizee/lib/primitive')
   , validDocument = require('dom-ext/lib/Document/valid-document')
   , normalize     = require('dom-ext/lib/Document/prototype/normalize')

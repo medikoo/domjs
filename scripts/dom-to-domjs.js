@@ -1,8 +1,8 @@
 'use strict';
 
-var compact    = require('es5-ext/lib/Array/prototype/compact')
-  , startsWith = require('es5-ext/lib/String/prototype/starts-with')
-  , repeat     = require('es5-ext/lib/String/prototype/repeat')
+var compact    = require('es5-ext/array/#/compact')
+  , startsWith = require('es5-ext/string/#/starts-with')
+  , repeat     = require('es5-ext/string/#/repeat')
 
   , map = Array.prototype.map
   , childNodes, attributes, element, text, text2
