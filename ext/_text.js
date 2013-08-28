@@ -7,6 +7,6 @@ exports._construct = function (data/* …data*/) {
 	return this;
 };
 
-exports.exclude = require('dom-ext/lib/Text/prototype/exclude');
-exports.include = require('dom-ext/lib/Text/prototype/include');
-exports.remove = require('dom-ext/lib/Text/prototype/remove');
+exports.exclude = require('dom-ext/text/#/exclude');
+exports.include = require('dom-ext/text/#/include');
+exports.remove = require('dom-ext/text/#/remove');

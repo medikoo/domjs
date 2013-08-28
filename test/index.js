@@ -1,6 +1,6 @@
 'use strict';
 
-var isDF = require('dom-ext/lib/DocumentFragment/is-document-fragment');
+var isDF = require('dom-ext/document-fragment/is-document-fragment');
 
 module.exports = function (t, a) {
 	var dom, domjs, ns;

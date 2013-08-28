@@ -1,4 +1,4 @@
 'use strict';
 
 exports._construct = require('./_list-construct')('li',
-	require('dom-ext/lib/HTMLLiElement/is-html-li-element'));
+	require('dom-ext/html-li-element/is-html-li-element'));

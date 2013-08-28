@@ -1,27 +1,26 @@
 'use strict';
 
 var extend   = require('es5-ext/object/extend')
-  , elExtend = require('dom-ext/lib/Element/prototype/extend')
-  , exclude  = require('dom-ext/lib/Element/prototype/exclude')
-  , include  = require('dom-ext/lib/Element/prototype/include')
+  , elExtend = require('dom-ext/element/#/extend')
+  , exclude  = require('dom-ext/element/#/exclude')
+  , include  = require('dom-ext/element/#/include')
 
   , forEach = Array.prototype.forEach;
 
-exports._construct    = elExtend;
-exports.after         = require('dom-ext/lib/Element/prototype/after');
-exports.append        = require('dom-ext/lib/Element/prototype/append');
-exports.before        = require('dom-ext/lib/Element/prototype/before');
-exports.castAttribute = require('dom-ext/lib/Element/prototype/cast-attribute');
-exports.clear         = require('dom-ext/lib/Element/prototype/clear');
-exports.disableControls =
-	require('dom-ext/lib/HTMLElement/prototype/disable-controls');
-exports.exclude       = exclude;
-exports.extend        = elExtend;
-exports.getId         = require('dom-ext/lib/HTMLElement/prototype/get-id');
-exports.include       = include;
-exports.prepend       = require('dom-ext/lib/Element/prototype/prepend');
-exports.remove        = require('dom-ext/lib/Element/prototype/remove');
-exports.replace       = require('dom-ext/lib/Element/prototype/replace');
+exports._construct      = elExtend;
+exports.after           = require('dom-ext/element/#/after');
+exports.append          = require('dom-ext/element/#/append');
+exports.before          = require('dom-ext/element/#/before');
+exports.castAttribute   = require('dom-ext/element/#/cast-attribute');
+exports.clear           = require('dom-ext/element/#/clear');
+exports.disableControls = require('dom-ext/html-element/#/disable-controls');
+exports.exclude         = exclude;
+exports.extend          = elExtend;
+exports.getId           = require('dom-ext/html-element/#/get-id');
+exports.include         = include;
+exports.prepend         = require('dom-ext/element/#/prepend');
+exports.remove          = require('dom-ext/element/#/remove');
+exports.replace         = require('dom-ext/element/#/replace');
 
 exports.toggle = function (value) {
 	if (value) include.call(this);

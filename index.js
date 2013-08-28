@@ -2,7 +2,7 @@
 
 var d              = require('es5-ext/object/descriptor')
   , extend         = require('es5-ext/object/extend')
-  , validDocument  = require('dom-ext/lib/Document/valid-document')
+  , validDocument  = require('dom-ext/document/valid-document')
   , Base           = require('./base')
   , construct      = require('./_construct-element')
 
