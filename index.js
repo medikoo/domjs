@@ -2,6 +2,7 @@
 
 var d              = require('es5-ext/object/descriptor')
   , extend         = require('es5-ext/object/extend')
+  , extendMeta     = require('es5-ext/object/extend-properties')
   , validDocument  = require('dom-ext/document/valid-document')
   , Base           = require('./base')
   , construct      = require('./_construct-element')
@@ -21,8 +22,15 @@ var d              = require('es5-ext/object/descriptor')
 	'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time',
 	'tr', 'track', 'ul', 'var', 'video', 'wbr'].forEach(function (name) {
 	elements[name] = d('cew', function () {
-		var el = this._current.appendChild(this.document.createElement(name));
-		el.__proto__ = this._elementProto(name);
+		var el = this._current.appendChild(this.document.createElement(name))
+		  , proto = this._elementProto(name);
+		try {
+			el.__proto__ = proto;
+		} catch (e) {
+			// Workaround for FF bug ->
+			// https://bugzilla.mozilla.org/show_bug.cgi?id=913420
+			extendMeta(el, proto);
+		}
 		construct(el, arguments);
 		return el;
 	});
