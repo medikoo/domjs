@@ -48,9 +48,10 @@ HTML5.prototype = Object.create(Base.prototype, extend({
 }));
 
 extend(require('./ext'), {
-	ol:     require('./ext/html5/ol'),
-	script: require('./ext/html5/script'),
-	select: require('./ext/html5/select'),
-	tbody:  require('./ext/html5/tbody'),
-	ul:     require('./ext/html5/ul')
+	ol:       require('./ext/html5/ol'),
+	optgroup: require('./ext/html5/optgroup'),
+	script:   require('./ext/html5/script'),
+	select:   require('./ext/html5/select'),
+	tbody:    require('./ext/html5/tbody'),
+	ul:       require('./ext/html5/ul')
 });
