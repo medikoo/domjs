@@ -1,8 +1,9 @@
 'use strict';
 
-var d              = require('es5-ext/object/descriptor')
-  , extend         = require('es5-ext/object/extend')
+var extend         = require('es5-ext/object/extend')
   , extendMeta     = require('es5-ext/object/extend-properties')
+  , d              = require('d/d')
+  , autoBind       = require('d/auto-bind')
   , validDocument  = require('dom-ext/document/valid-document')
   , Base           = require('./base')
   , construct      = require('./_construct-element')
@@ -44,7 +45,7 @@ module.exports = HTML5 = function (document) {
 
 HTML5.prototype = Object.create(Base.prototype, extend({
 	constructor: d(HTML5),
-	ns: d(Object.create(Base.prototype.ns, d.binder(elements, '_domjs')))
+	ns: d(Object.create(Base.prototype.ns, autoBind(elements, '_domjs')))
 }));
 
 extend(require('./ext'), {

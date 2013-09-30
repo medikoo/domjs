@@ -1,9 +1,11 @@
 'use strict';
 
 var toArray       = require('es5-ext/array/from')
-  , d             = require('es5-ext/object/descriptor')
   , extend        = require('es5-ext/object/extend')
   , forEach       = require('es5-ext/object/for-each')
+  , d             = require('d/d')
+  , autoBind      = require('d/auto-bind')
+  , lazy          = require('d/lazy')
   , memoize       = require('memoizee/lib/primitive')
   , validDocument = require('dom-ext/document/valid-document')
   , normalize     = require('dom-ext/document/#/normalize')
@@ -51,7 +53,7 @@ Object.defineProperties(Base.prototype, extend({
 		if (l === 1) return result.childNodes[0];
 		return toArray(result.childNodes);
 	})
-}, d.lazy({
+}, lazy({
 	_commentProto: d(function self() {
 		var proto = create(getPrototypeOf(this.document.createComment('')), {
 			domjs: d(this)
@@ -88,7 +90,7 @@ Object.defineProperties(Base.prototype, extend({
 }, { method: '_elementProto' }), memoize(function (name) {
 	return (this._directives[name] = create(this._directives._element));
 }, { method: 'getDirectives' }), {
-	ns: d(create(null, d.binder({
+	ns: d(create(null, autoBind({
 		comment: d('cew', function (data) {
 			var el = this._current.appendChild(this.document.createComment(data));
 			el.__proto__ = this._commentProto;

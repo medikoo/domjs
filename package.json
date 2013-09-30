@@ -18,7 +18,8 @@
     "test": "node ./node_modules/tad/bin/tad"
   },
   "dependencies": {
-    "es5-ext": "git://github.com/medikoo/dom-ext.git",
+    "d": "git://github.com/medikoo/d.git",
+    "es5-ext": "git://github.com/medikoo/es5-ext.git",
     "event-emitter": "~0.2.1",
     "dom-ext": "git://github.com/medikoo/dom-ext.git",
     "memoizee": "git://github.com/medikoo/memoizee.git"
