@@ -1,6 +1,6 @@
 'use strict';
 
-var toArray       = require('es5-ext/array/from')
+var aFrom         = require('es5-ext/array/from')
   , extend        = require('es5-ext/object/extend')
   , forEach       = require('es5-ext/object/for-each')
   , d             = require('d/d')
@@ -51,7 +51,7 @@ Object.defineProperties(Base.prototype, extend({
 		l = result.childNodes.length;
 		if (!l) return null;
 		if (l === 1) return result.childNodes[0];
-		return toArray(result.childNodes);
+		return aFrom(result.childNodes);
 	})
 }, lazy({
 	_commentProto: d(function self() {
@@ -119,7 +119,7 @@ Object.defineProperties(Base.prototype, extend({
 		}),
 		insert: d('cew', function (node/*, …nodes*/) {
 			var dom = normalize.apply(this.document, arguments), result;
-			if (isDF(dom)) result = toArray(dom.childNodes);
+			if (isDF(dom)) result = aFrom(dom.childNodes);
 			else result = dom;
 			this._current.appendChild(dom);
 			return result;
