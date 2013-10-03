@@ -1,7 +1,7 @@
 'use strict';
 
 var assign         = require('es5-ext/object/assign')
-  , extendMeta     = require('es5-ext/object/extend-properties')
+  , mixin          = require('es5-ext/object/mixin')
   , d              = require('d/d')
   , autoBind       = require('d/auto-bind')
   , validDocument  = require('dom-ext/document/valid-document')
@@ -30,7 +30,7 @@ var assign         = require('es5-ext/object/assign')
 		} catch (e) {
 			// Workaround for FF bug ->
 			// https://bugzilla.mozilla.org/show_bug.cgi?id=913420
-			extendMeta(el, proto);
+			mixin(el, proto);
 		}
 		construct(el, arguments);
 		return el;
