@@ -1,7 +1,7 @@
 'use strict';
 
 var aFrom         = require('es5-ext/array/from')
-  , extend        = require('es5-ext/object/extend')
+  , assign        = require('es5-ext/object/assign-multiple')
   , forEach       = require('es5-ext/object/for-each')
   , d             = require('d/d')
   , autoBind      = require('d/auto-bind')
@@ -33,7 +33,7 @@ module.exports = Base = function (document) {
 		ns: d(create(this.ns, { _domjs: d(this) }))
 	});
 };
-Object.defineProperties(Base.prototype, extend({
+Object.defineProperties(Base.prototype, assign({
 	collect: d(function (fn) {
 		var previous = this._current
 		  , current = (this._current = this.document.createDocumentFragment());

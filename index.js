@@ -1,6 +1,6 @@
 'use strict';
 
-var extend         = require('es5-ext/object/extend')
+var assign         = require('es5-ext/object/assign')
   , extendMeta     = require('es5-ext/object/extend-properties')
   , d              = require('d/d')
   , autoBind       = require('d/auto-bind')
@@ -43,12 +43,12 @@ module.exports = HTML5 = function (document) {
 	Base.call(this, validDocument(document));
 };
 
-HTML5.prototype = Object.create(Base.prototype, extend({
+HTML5.prototype = Object.create(Base.prototype, {
 	constructor: d(HTML5),
 	ns: d(Object.create(Base.prototype.ns, autoBind(elements, '_domjs')))
-}));
+});
 
-extend(require('./ext'), {
+assign(require('./ext'), {
 	ol:       require('./ext/html5/ol'),
 	optgroup: require('./ext/html5/optgroup'),
 	script:   require('./ext/html5/script'),

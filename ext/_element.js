@@ -1,13 +1,13 @@
 'use strict';
 
-var extend   = require('es5-ext/object/extend')
-  , elExtend = require('dom-ext/element/#/extend')
-  , exclude  = require('dom-ext/element/#/exclude')
-  , include  = require('dom-ext/element/#/include')
+var assign  = require('es5-ext/object/assign')
+  , extend  = require('dom-ext/element/#/extend')
+  , exclude = require('dom-ext/element/#/exclude')
+  , include = require('dom-ext/element/#/include')
 
   , forEach = Array.prototype.forEach;
 
-exports._construct      = elExtend;
+exports._construct      = extend;
 exports.after           = require('dom-ext/element/#/after');
 exports.append          = require('dom-ext/element/#/append');
 exports.before          = require('dom-ext/element/#/before');
@@ -15,7 +15,7 @@ exports.castAttribute   = require('dom-ext/element/#/cast-attribute');
 exports.clear           = require('dom-ext/element/#/clear');
 exports.disableControls = require('dom-ext/html-element/#/disable-controls');
 exports.exclude         = exclude;
-exports.extend          = elExtend;
+exports.extend          = extend;
 exports.getId           = require('dom-ext/html-element/#/get-id');
 exports.include         = include;
 exports.prepend         = require('dom-ext/element/#/prepend');
@@ -35,4 +35,4 @@ exports.queryAll = function (selector) {
 	return list;
 };
 
-extend(exports, require('event-emitter/lib/core').methods);
+assign(exports, require('event-emitter/lib/core').methods);
