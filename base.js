@@ -71,7 +71,7 @@ Object.defineProperties(Base.prototype, assign({
 			defineProperty(proto, name, d(value));
 		});
 		return proto;
-	}),
+	})
 }), memoize(function (name) {
 	var proto = create(getPrototypeOf(this.document.createElement(name)));
 	forEach(ext._element, function (value, name) {
