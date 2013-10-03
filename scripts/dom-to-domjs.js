@@ -54,10 +54,9 @@ childNodes = function (nodes, nest, doBreak) {
 
 element = function (dom, nest) {
 	return dom.nodeName.toLowerCase() + '(' +
-		compact.call([dom.attributes.length && attributes(dom.attributes),
-			dom.childNodes.length &&
-			childNodes(dom.childNodes, nest, dom.attributes.length)]).join(', ') +
-		')';
+		compact.call([dom.attributes.length ? attributes(dom.attributes) : null,
+			dom.childNodes.length ? childNodes(dom.childNodes, nest,
+				dom.attributes.length) : null]).join(', ') + ')';
 };
 
 module.exports = function (dom) {
