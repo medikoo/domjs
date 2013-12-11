@@ -1,4 +1,5 @@
-# domjs - client and server side dom template engine
+# domjs
+## Client and server side dom template engine
 
 Build dom structure easy way with plain JavaScript. Can be used on both client
 and server side.
