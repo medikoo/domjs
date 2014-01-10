@@ -3,6 +3,8 @@
 var isFunction     = require('es5-ext/function/is-function')
   , isList         = require('es5-ext/object/is-list')
   , isPlainObject  = require('es5-ext/object/is-plain-object')
+  , isIterable     = require('es6-iterator/is-iterable')
+  , isObservable   = require('observable-value/is-observable')
   , makeElement    = require('dom-ext/document/#/make-element')
   , castAttributes = require('dom-ext/element/#/cast-attributes')
   , elExtend       = require('dom-ext/element/#/extend')
@@ -12,11 +14,11 @@ var isFunction     = require('es5-ext/function/is-function')
   , isText         = require('dom-ext/text/is-text')
   , memoize        = require('memoizee/lib/regular')
 
-  , map = Array.prototype.map;
+  , map = Array.prototype.map, call = Function.prototype.call;
 
 module.exports = function (childName, isChildNode) {
 	return function (list/*, renderItem, thisArg*/) {
-		var attrs, renderItem, render, thisArg, cb, onEmpty;
+		var attrs, renderItem, render, thisArg, cb, onEmpty, arrayLike;
 		if (isPlainObject(list) && !isFunction(arguments[1])) {
 			attrs = list;
 			list = arguments[1];
@@ -26,7 +28,11 @@ module.exports = function (childName, isChildNode) {
 			renderItem = arguments[1];
 			thisArg = arguments[2];
 		}
-		if (isNode(list) || !isList(list) || !isFunction(renderItem)) {
+		if (isNode(list) || !isFunction(renderItem)) {
+			return elExtend.apply(this, arguments);
+		}
+		arrayLike = isList(list);
+		if (!arrayLike && !isIterable(list)) {
 			return elExtend.apply(this, arguments);
 		}
 		if (attrs) {
@@ -50,11 +56,19 @@ module.exports = function (childName, isChildNode) {
 			return result;
 		};
 		render = function () {
-			var content = map.call(list, cb, this.domjs);
+			var content;
+			if (arrayLike) {
+				content = map.call(list, cb, this.domjs);
+			} else if (list.forEach) {
+				content = [];
+				list.forEach(function (item, key) {
+					content.push(call.call(cb, this.domjs, item, key, list));
+				});
+			}
 			if (!content.length && onEmpty) content = onEmpty;
 			replaceContent.call(this, content);
 		}.bind(this);
-		if (typeof list.on === 'function') {
+		if (isObservable(list)) {
 			cb = memoize(cb, { length: 1 });
 			list.on('change', render);
 		}
