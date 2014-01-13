@@ -63,7 +63,7 @@ module.exports = function (childName, isChildNode) {
 				content = [];
 				list.forEach(function (item, key) {
 					content.push(call.call(cb, this.domjs, item, key, list));
-				});
+				}, this);
 			}
 			if (!content.length && onEmpty) content = onEmpty;
 			replaceContent.call(this, content);
