@@ -1,7 +1,7 @@
 'use strict';
 
 var isFunction     = require('es5-ext/function/is-function')
-  , isList         = require('es5-ext/object/is-list')
+  , isArrayLike    = require('es5-ext/object/is-array-like')
   , isPlainObject  = require('es5-ext/object/is-plain-object')
   , isIterable     = require('es6-iterator/is-iterable')
   , isObservable   = require('observable-value/is-observable')
@@ -31,7 +31,7 @@ module.exports = function (childName, isChildNode) {
 		if (isNode(list) || !isFunction(renderItem)) {
 			return elExtend.apply(this, arguments);
 		}
-		arrayLike = isList(list);
+		arrayLike = isArrayLike(list);
 		if (!arrayLike && !isIterable(list)) {
 			return elExtend.apply(this, arguments);
 		}
