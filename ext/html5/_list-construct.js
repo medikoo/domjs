@@ -17,8 +17,9 @@ var isFunction     = require('es5-ext/function/is-function')
   , map = Array.prototype.map, call = Function.prototype.call;
 
 module.exports = function (childName, isChildNode) {
-	return function (list/*, renderItem, thisArg*/) {
-		var attrs, renderItem, render, thisArg, cb, onEmpty, arrayLike;
+	return function (listArg/*, renderItem, thisArg*/) {
+		var attrs, renderItem, render, thisArg, cb, onEmpty, arrayLike
+		  , list = listArg;
 		if (isPlainObject(list) && !isFunction(arguments[1])) {
 			attrs = list;
 			list = arguments[1];
