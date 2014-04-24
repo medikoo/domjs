@@ -35,4 +35,4 @@ exports.queryAll = function (selector) {
 	return list;
 };
 
-assign(exports, require('event-emitter/lib/core').methods);
+assign(exports, require('event-emitter').methods);
