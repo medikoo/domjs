@@ -2,7 +2,7 @@
 
 var assign         = require('es5-ext/object/assign')
   , mixin          = require('es5-ext/object/mixin')
-  , d              = require('d/d')
+  , d              = require('d')
   , autoBind       = require('d/auto-bind')
   , validDocument  = require('dom-ext/document/valid-document')
   , Base           = require('./base')

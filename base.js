@@ -3,7 +3,7 @@
 var aFrom         = require('es5-ext/array/from')
   , assign        = require('es5-ext/object/assign')
   , forEach       = require('es5-ext/object/for-each')
-  , d             = require('d/d')
+  , d             = require('d')
   , autoBind      = require('d/auto-bind')
   , lazy          = require('d/lazy')
   , memoize       = require('memoizee/lib/primitive')
