@@ -20,6 +20,7 @@
   "dependencies": {
     "d": "~0.1.1",
     "es5-ext": "~0.10.2",
+    "es6-iterator": "git://github.com/medikoo/es6-iterator.git",
     "event-emitter": "~0.3.1",
     "dom-ext": "git://github.com/medikoo/dom-ext.git",
     "memoizee": "~0.3.1"
