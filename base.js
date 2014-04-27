@@ -1,26 +1,24 @@
 'use strict';
 
-var aFrom         = require('es5-ext/array/from')
-  , assign        = require('es5-ext/object/assign')
-  , forEach       = require('es5-ext/object/for-each')
-  , d             = require('d')
-  , autoBind      = require('d/auto-bind')
-  , lazy          = require('d/lazy')
-  , memoize       = require('memoizee/lib/primitive')
-  , validDocument = require('dom-ext/document/valid-document')
-  , normalize     = require('dom-ext/document/#/normalize')
-  , isDF          = require('dom-ext/document-fragment/is-document-fragment')
-  , isNode        = require('dom-ext/node/is-node')
-  , validNode     = require('dom-ext/node/valid-node')
-  , ext           = require('./ext')
-  , construct     = require('./_construct-element')
+var aFrom          = require('es5-ext/array/from')
+  , assign         = require('es5-ext/object/assign')
+  , forEach        = require('es5-ext/object/for-each')
+  , d              = require('d')
+  , autoBind       = require('d/auto-bind')
+  , lazy           = require('d/lazy')
+  , memoizeMethods = require('memoizee/methods-plain')
+  , validDocument  = require('dom-ext/document/valid-document')
+  , normalize      = require('dom-ext/document/#/normalize')
+  , isDF           = require('dom-ext/document-fragment/is-document-fragment')
+  , isNode         = require('dom-ext/node/is-node')
+  , validNode      = require('dom-ext/node/valid-node')
+  , ext            = require('./ext')
+  , construct      = require('./_construct-element')
 
   , slice = Array.prototype.slice
   , create = Object.create, defineProperty = Object.defineProperty
   , defineProperties = Object.defineProperties
   , getPrototypeOf = Object.getPrototypeOf, Base;
-
-require('memoizee/lib/ext/method');
 
 module.exports = Base = function (document) {
 	if (!(this instanceof Base)) return new Base(document);
@@ -72,24 +70,27 @@ Object.defineProperties(Base.prototype, assign({
 		});
 		return proto;
 	})
-}), memoize(function (name) {
-	var proto = create(getPrototypeOf(this.document.createElement(name)));
-	forEach(ext._element, function (value, name) {
-		defineProperty(proto, name, d(value));
-	});
-	if (ext[name]) {
-		forEach(ext[name], function (value, name) {
+}), memoizeMethods({
+	_elementProto: d(function (name) {
+		var proto = create(getPrototypeOf(this.document.createElement(name)));
+		forEach(ext._element, function (value, name) {
 			defineProperty(proto, name, d(value));
 		});
-	}
-	defineProperties(proto, {
-		domjs: d(this),
-		_directives: d(this.getDirectives(name))
-	});
-	return proto;
-}, { method: '_elementProto' }), memoize(function (name) {
-	return (this._directives[name] = create(this._directives._element));
-}, { method: 'getDirectives' }), {
+		if (ext[name]) {
+			forEach(ext[name], function (value, name) {
+				defineProperty(proto, name, d(value));
+			});
+		}
+		defineProperties(proto, {
+			domjs: d(this),
+			_directives: d(this.getDirectives(name))
+		});
+		return proto;
+	}),
+	getDirectives: d(function (name) {
+		return (this._directives[name] = create(this._directives._element));
+	})
+}), {
 	ns: d(create(null, autoBind({
 		comment: d('cew', function (data) {
 			var el = this._current.appendChild(this.document.createComment(data));

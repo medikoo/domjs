@@ -12,7 +12,8 @@ var isFunction     = require('es5-ext/function/is-function')
   , replaceContent = require('dom-ext/element/#/replace-content')
   , isNode         = require('dom-ext/node/is-node')
   , isText         = require('dom-ext/text/is-text')
-  , memoize        = require('memoizee/lib/regular')
+  , memoize        = require('memoizee/plain')
+  , getNormalizer  = require('memoizee/normalizers/get-1')
 
   , map = Array.prototype.map, call = Function.prototype.call;
 
@@ -70,7 +71,7 @@ module.exports = function (childName, isChildNode) {
 			replaceContent.call(this, content);
 		}.bind(this);
 		if (isObservable(list)) {
-			cb = memoize(cb, { length: 1 });
+			cb = memoize(cb, { normalizer: getNormalizer() });
 			list.on('change', render);
 		}
 		render();
