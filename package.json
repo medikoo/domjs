@@ -23,7 +23,8 @@
     "es6-iterator": "git://github.com/medikoo/es6-iterator.git",
     "event-emitter": "~0.3.1",
     "dom-ext": "git://github.com/medikoo/dom-ext.git",
-    "memoizee": "~0.3.1"
+    "memoizee": "~0.3.1",
+    "observable-value": "git://github.com/medikoo/observable-value.git"
   },
   "devDependencies": {
     "commander": "~1.1",
