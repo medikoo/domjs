@@ -44,7 +44,7 @@ Object.defineProperties(Base.prototype, assign({
 		result = this.collect(function () { direct = fn(); });
 		if (direct) result = direct;
 		if (result == null) return null;
-		if (!isNode(result)) result = normalize.call(this.document, result);
+		if (!isNode(result)) return normalize.call(this.document, result);
 		if (!isDF(result)) return result;
 		l = result.childNodes.length;
 		if (!l) return null;
