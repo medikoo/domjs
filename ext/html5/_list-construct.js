@@ -32,7 +32,10 @@ module.exports = function (childName, isChildNode) {
 		}
 		if (isNode(list) || !isFunction(renderItem)) return elExtend.apply(this, arguments);
 		arrayLike = isArrayLike(list);
-		if (!arrayLike && !isIterable(list)) return elExtend.apply(this, arguments);
+		if (!arrayLike && !isIterable(list)) {
+			if (typeof renderItem.toDOM !== 'function') return elExtend.apply(this, arguments);
+			throw new TypeError(list + " is not an array-like or iterable");
+		}
 		if (attrs) {
 			if (attrs.onEmpty) {
 				onEmpty = attrs.onEmpty;
