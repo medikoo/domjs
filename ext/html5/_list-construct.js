@@ -30,13 +30,9 @@ module.exports = function (childName, isChildNode) {
 			renderItem = arguments[1];
 			thisArg = arguments[2];
 		}
-		if (isNode(list) || !isFunction(renderItem)) {
-			return elExtend.apply(this, arguments);
-		}
+		if (isNode(list) || !isFunction(renderItem)) return elExtend.apply(this, arguments);
 		arrayLike = isArrayLike(list);
-		if (!arrayLike && !isIterable(list)) {
-			return elExtend.apply(this, arguments);
-		}
+		if (!arrayLike && !isIterable(list)) return elExtend.apply(this, arguments);
 		if (attrs) {
 			if (attrs.onEmpty) {
 				onEmpty = attrs.onEmpty;
@@ -49,12 +45,8 @@ module.exports = function (childName, isChildNode) {
 			var result;
 			result = this.safeCollect(renderItem.bind(thisArg, item, index, list));
 			if (result == null) return null;
-			if (isText(result) && !result.data && result._isDomExtLocation_) {
-				return result;
-			}
-			if (!isChildNode(result)) {
-				result = makeElement.call(this.document, childName, result);
-			}
+			if (isText(result) && !result.data && result._isDomExtLocation_) return result;
+			if (!isChildNode(result)) result = makeElement.call(this.document, childName, result);
 			return result;
 		};
 		render = function () {
