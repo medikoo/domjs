@@ -1,8 +1,8 @@
 {
   "name": "domjs",
   "version": "0.3.0",
-  "author": "Mariusz Nowak <medikoo+domjs@medikoo.com> (http://www.medikoo.com/)",
   "description": "DOM template engine for client and server",
+  "author": "Mariusz Nowak <medikoo@medikoo.com> (http://www.medikoo.com/)",
   "keywords": [
     "dom",
     "build",
@@ -14,15 +14,12 @@
     "type": "git",
     "url": "git://github.com/medikoo/domjs.git"
   },
-  "scripts": {
-    "test": "node ./node_modules/tad/bin/tad"
-  },
   "dependencies": {
     "d": "~0.1.1",
+    "dom-ext": "git://github.com/medikoo/dom-ext.git",
     "es5-ext": "~0.10.2",
     "es6-iterator": "git://github.com/medikoo/es6-iterator.git",
     "event-emitter": "~0.3.1",
-    "dom-ext": "git://github.com/medikoo/dom-ext.git",
     "memoizee": "~0.3.1",
     "observable-value": "git://github.com/medikoo/observable-value.git"
   },
@@ -30,6 +27,9 @@
     "commander": "~1.1",
     "jsdom": "~0.3.3",
     "tad": "0.2.x"
+  },
+  "scripts": {
+    "test": "node ./node_modules/tad/bin/tad"
   },
   "licence": "MIT"
 }
