@@ -15,7 +15,7 @@ module.exports = function (t, a) {
 
 		ns.element('foo', "foo text");
 
-		late = ns.element('bar', { 'class': "test-class", other: "test-other",
+		late = ns.element('bar', { class: "test-class", other: "test-other",
 			id: "internal" },
 			ns.element('foo', "raz"),
 			ns.element('foo', "dwa"),

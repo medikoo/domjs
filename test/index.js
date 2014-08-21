@@ -13,7 +13,7 @@ module.exports = function (t, a) {
 	dom = domjs.collect(function () {
 		ns.div("foo text");
 
-		ns.p({ 'class': "test-class", other: "test-other", id: "internal" },
+		ns.p({ class: "test-class", other: "test-other", id: "internal" },
 			ns.span("raz"),
 			ns.span("dwa"),
 			ns.text("trzy"));

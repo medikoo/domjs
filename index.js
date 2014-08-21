@@ -34,7 +34,7 @@ var assign         = require('es5-ext/object/assign')
 		return el;
 	});
 });
-elements._var = elements['var'];
+elements._var = elements.var;
 
 module.exports = HTML5 = function (document) {
 	if (!(this instanceof HTML5)) return new HTML5(document);
