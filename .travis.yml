@@ -7,3 +7,5 @@ node_js:
 notifications:
   email:
     - medikoo+domjs@medikoo.com
+
+script: "npm test && npm run lint"
