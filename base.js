@@ -15,7 +15,7 @@ var aFrom          = require('es5-ext/array/from')
   , ext            = require('./ext')
   , construct      = require('./_construct-element')
 
-  , slice = Array.prototype.slice
+  , isArray = Array.isArray, slice = Array.prototype.slice
   , create = Object.create, defineProperty = Object.defineProperty
   , defineProperties = Object.defineProperties
   , getPrototypeOf = Object.getPrototypeOf, Base;
@@ -119,11 +119,10 @@ Object.defineProperties(Base.prototype, assign({
 			return node;
 		}),
 		insert: d('cew', function (node/*, …nodes*/) {
-			var dom = normalize.apply(this.document, arguments), result;
-			if (isDF(dom)) result = aFrom(dom.childNodes);
-			else result = dom;
-			this._current.appendChild(dom);
-			return result;
+			var dom = normalize.apply(this.document, arguments);
+			if (isArray(dom)) dom.forEach(this._current.appendChild, this._current);
+			else if (dom != null) this._current.appendChild(dom);
+			return dom;
 		})
 	}, '_domjs')))
 }));
