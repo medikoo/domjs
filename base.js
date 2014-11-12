@@ -36,10 +36,11 @@ Object.defineProperties(Base.prototype, assign({
 		this._current = previous;
 		return current;
 	}),
-	safeCollect: d(function (fn) {
+	safeCollect: d(function (fn) { return normalize.call(this.document, this.safeCollectRaw(fn)); }),
+	safeCollectRaw: d(function (fn) {
 		var direct, result;
 		result = this.collect(function () { direct = fn(); });
-		return normalize.call(this.document, direct === undefined ? result : direct);
+		return (direct === undefined) ? result : direct;
 	})
 }, lazy({
 	_commentProto: d(function self() {
