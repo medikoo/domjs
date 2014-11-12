@@ -1,7 +1,6 @@
 'use strict';
 
-var aFrom          = require('es5-ext/array/from')
-  , assign         = require('es5-ext/object/assign')
+var assign         = require('es5-ext/object/assign')
   , forEach        = require('es5-ext/object/for-each')
   , d              = require('d')
   , autoBind       = require('d/auto-bind')
@@ -9,8 +8,6 @@ var aFrom          = require('es5-ext/array/from')
   , memoizeMethods = require('memoizee/methods-plain')
   , validDocument  = require('dom-ext/document/valid-document')
   , normalize      = require('dom-ext/document/#/normalize')
-  , isDF           = require('dom-ext/document-fragment/is-document-fragment')
-  , isNode         = require('dom-ext/node/is-node')
   , validNode      = require('dom-ext/node/valid-node')
   , ext            = require('./ext')
   , construct      = require('./_construct-element')
@@ -40,16 +37,9 @@ Object.defineProperties(Base.prototype, assign({
 		return current;
 	}),
 	safeCollect: d(function (fn) {
-		var direct, result, l;
+		var direct, result;
 		result = this.collect(function () { direct = fn(); });
-		if (direct) result = direct;
-		if (result == null) return null;
-		if (!isNode(result)) return normalize.call(this.document, result);
-		if (!isDF(result)) return result;
-		l = result.childNodes.length;
-		if (!l) return null;
-		if (l === 1) return result.childNodes[0];
-		return aFrom(result.childNodes);
+		return normalize.call(this.document, direct === undefined ? result : direct);
 	})
 }, lazy({
 	_commentProto: d(function self() {
