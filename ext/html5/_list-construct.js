@@ -15,7 +15,7 @@ var isFunction     = require('es5-ext/function/is-function')
   , memoize        = require('memoizee/plain')
   , getNormalizer  = require('memoizee/normalizers/get-1')
 
-  , map = Array.prototype.map, call = Function.prototype.call;
+  , map = Array.prototype.map;
 
 module.exports = function (childName, isChildNode) {
 	return function (listArg/*, renderItem, thisArg*/) {
@@ -59,7 +59,7 @@ module.exports = function (childName, isChildNode) {
 			} else if (list.forEach) {
 				content = [];
 				list.forEach(function (item, key) {
-					content.push(call.call(cb, this.domjs, item, key, list));
+					content.push(cb.call(this.domjs, item, key, list));
 				}, this);
 			}
 			if (!content.length && onEmpty) content = onEmpty;
