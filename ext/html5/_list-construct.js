@@ -1,19 +1,20 @@
 'use strict';
 
-var isFunction     = require('es5-ext/function/is-function')
-  , isArrayLike    = require('es5-ext/object/is-array-like')
-  , isPlainObject  = require('es5-ext/object/is-plain-object')
-  , isIterable     = require('es6-iterator/is-iterable')
-  , isObservable   = require('observable-value/is-observable')
-  , makeElement    = require('dom-ext/document/#/make-element')
-  , castAttributes = require('dom-ext/element/#/cast-attributes')
-  , elExtend       = require('dom-ext/element/#/extend')
-  , remove         = require('dom-ext/element/#/remove')
-  , replaceContent = require('dom-ext/element/#/replace-content')
-  , isNode         = require('dom-ext/node/is-node')
-  , isText         = require('dom-ext/text/is-text')
-  , memoize        = require('memoizee/plain')
-  , getNormalizer  = require('memoizee/normalizers/get-1')
+var isFunction        = require('es5-ext/function/is-function')
+  , isArrayLike       = require('es5-ext/object/is-array-like')
+  , isPlainObject     = require('es5-ext/object/is-plain-object')
+  , isIterable        = require('es6-iterator/is-iterable')
+  , isObservable      = require('observable-value/is-observable')
+  , makeElement       = require('dom-ext/document/#/make-element')
+  , normalize         = require('dom-ext/document/#/normalize')
+  , castAttributes    = require('dom-ext/element/#/cast-attributes')
+  , elExtend          = require('dom-ext/element/#/extend')
+  , remove            = require('dom-ext/element/#/remove')
+  , replaceContent    = require('dom-ext/element/#/replace-content')
+  , isNode            = require('dom-ext/node/is-node')
+  , memoize           = require('memoizee/plain')
+  , getNormalizer     = require('memoizee/normalizers/get-1')
+  , isObservableValue = require('observable-value/is-observable-value')
 
   , map = Array.prototype.map;
 
@@ -46,9 +47,17 @@ module.exports = function (childName, isChildNode) {
 		}
 		cb = function (item, index, list) {
 			var result;
-			result = this.safeCollect(renderItem.bind(thisArg, item, index, list));
+			result = this.safeCollectRaw(renderItem.bind(thisArg, item, index, list));
 			if (result == null) return null;
-			if (isText(result) && !result.data && result._isDomExtLocation_) return result;
+			if (isObservableValue(result)) {
+				return normalize.call(this.document, result.map(function (result) {
+					result = normalize.call(this.document, result);
+					if (result == null) return null;
+					if (!isChildNode(result)) result = makeElement.call(this.document, childName, result);
+					return result;
+				}, this));
+			}
+			result = normalize.call(this.document, result);
 			if (!isChildNode(result)) result = makeElement.call(this.document, childName, result);
 			return result;
 		};
