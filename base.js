@@ -8,6 +8,7 @@ var assign         = require('es5-ext/object/assign')
   , memoizeMethods = require('memoizee/methods-plain')
   , validDocument  = require('dom-ext/document/valid-document')
   , normalize      = require('dom-ext/document/#/normalize')
+  , normalizeRaw   = require('dom-ext/document/#/normalize-raw')
   , validNode      = require('dom-ext/node/valid-node')
   , ext            = require('./ext')
   , construct      = require('./_construct-element')
@@ -40,7 +41,7 @@ Object.defineProperties(Base.prototype, assign({
 	safeCollectRaw: d(function (fn) {
 		var direct, result;
 		result = this.collect(function () { direct = fn(); });
-		return (direct === undefined) ? result : direct;
+		return normalizeRaw.call(this.document, (direct === undefined) ? result : direct);
 	})
 }, lazy({
 	_commentProto: d(function self() {
