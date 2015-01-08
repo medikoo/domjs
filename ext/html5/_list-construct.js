@@ -1,20 +1,22 @@
 'use strict';
 
-var isFunction        = require('es5-ext/function/is-function')
-  , isArrayLike       = require('es5-ext/object/is-array-like')
-  , isPlainObject     = require('es5-ext/object/is-plain-object')
-  , isIterable        = require('es6-iterator/is-iterable')
-  , isObservable      = require('observable-value/is-observable')
-  , makeElement       = require('dom-ext/document/#/make-element')
-  , normalize         = require('dom-ext/document/#/normalize')
-  , castAttributes    = require('dom-ext/element/#/cast-attributes')
-  , elExtend          = require('dom-ext/element/#/extend')
-  , remove            = require('dom-ext/element/#/remove')
-  , replaceContent    = require('dom-ext/element/#/replace-content')
-  , isNode            = require('dom-ext/node/is-node')
-  , memoize           = require('memoizee/plain')
-  , getNormalizer     = require('memoizee/normalizers/get-1')
-  , isObservableValue = require('observable-value/is-observable-value')
+var isFunction          = require('es5-ext/function/is-function')
+  , isArrayLike         = require('es5-ext/object/is-array-like')
+  , isPlainObject       = require('es5-ext/object/is-plain-object')
+  , isIterable          = require('es6-iterator/is-iterable')
+  , isMap               = require('es6-map/is-map')
+  , isObservable        = require('observable-value/is-observable')
+  , makeElement         = require('dom-ext/document/#/make-element')
+  , normalize           = require('dom-ext/document/#/normalize')
+  , castAttributes      = require('dom-ext/element/#/cast-attributes')
+  , elExtend            = require('dom-ext/element/#/extend')
+  , remove              = require('dom-ext/element/#/remove')
+  , replaceContent      = require('dom-ext/element/#/replace-content')
+  , isNode              = require('dom-ext/node/is-node')
+  , memoize             = require('memoizee/plain')
+  , getOneArgNormalizer = require('memoizee/normalizers/get-1')
+  , getNormalizer       = require('memoizee/normalizers/get-fixed')
+  , isObservableValue   = require('observable-value/is-observable-value')
 
   , map = Array.prototype.map;
 
@@ -75,7 +77,7 @@ module.exports = function (childName, isChildNode) {
 			replaceContent.call(this, content);
 		}.bind(this);
 		if (isObservable(list)) {
-			cb = memoize(cb, { normalizer: getNormalizer() });
+			cb = memoize(cb, { normalizer: isMap(list) ? getNormalizer(2) : getOneArgNormalizer() });
 			list.on('change', render);
 		}
 		render();
