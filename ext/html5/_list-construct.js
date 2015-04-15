@@ -1,9 +1,9 @@
 'use strict';
 
-var isFunction          = require('es5-ext/function/is-function')
-  , isArrayLike         = require('es5-ext/object/is-array-like')
+var aFrom               = require('es5-ext/array/from')
+  , isFunction          = require('es5-ext/function/is-function')
   , isPlainObject       = require('es5-ext/object/is-plain-object')
-  , isIterable          = require('es6-iterator/is-iterable')
+  , iterable            = require('es5-ext/iterable/validate-object')
   , isMap               = require('es6-map/is-map')
   , isObservable        = require('observable-value/is-observable')
   , makeElement         = require('dom-ext/document/#/make-element')
@@ -16,14 +16,11 @@ var isFunction          = require('es5-ext/function/is-function')
   , memoize             = require('memoizee/plain')
   , getOneArgNormalizer = require('memoizee/normalizers/get-1')
   , getNormalizer       = require('memoizee/normalizers/get-fixed')
-  , isObservableValue   = require('observable-value/is-observable-value')
-
-  , map = Array.prototype.map;
+  , isObservableValue   = require('observable-value/is-observable-value');
 
 module.exports = function (childName, isChildNode) {
 	return function (listArg/*, renderItem, thisArg*/) {
-		var attrs, renderItem, render, thisArg, cb, onEmpty, arrayLike
-		  , list = listArg;
+		var attrs, renderItem, render, thisArg, cb, onEmpty, list = listArg;
 		if (isPlainObject(list) && !isFunction(arguments[1])) {
 			attrs = list;
 			list = arguments[1];
@@ -34,11 +31,7 @@ module.exports = function (childName, isChildNode) {
 			thisArg = arguments[2];
 		}
 		if (isNode(list) || !isFunction(renderItem)) return elExtend.apply(this, arguments);
-		arrayLike = isArrayLike(list);
-		if (!arrayLike && !isIterable(list)) {
-			if (typeof renderItem.toDOM !== 'function') return elExtend.apply(this, arguments);
-			throw new TypeError(list + " is not an array-like or iterable");
-		}
+		iterable(list);
 		if (attrs) {
 			if (attrs.onEmpty) {
 				onEmpty = attrs.onEmpty;
@@ -65,14 +58,7 @@ module.exports = function (childName, isChildNode) {
 		};
 		render = function () {
 			var content;
-			if (arrayLike) {
-				content = map.call(list, cb, this.domjs);
-			} else if (list.forEach) {
-				content = [];
-				list.forEach(function (item, key) {
-					content.push(cb.call(this.domjs, item, key, list));
-				}, this);
-			}
+			content = aFrom(list, cb, this.domjs);
 			if (!content.length && onEmpty) content = onEmpty;
 			replaceContent.call(this, content);
 		}.bind(this);
