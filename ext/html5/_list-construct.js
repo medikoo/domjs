@@ -58,8 +58,15 @@ module.exports = function (childName, isChildNode) {
 			return result;
 		};
 		render = function () {
-			var content;
-			content = list ? aFrom(list, cb, this.domjs) : [];
+			var content, isKeyValue;
+			if (list) {
+				isKeyValue = isMap(list);
+				content = aFrom(list, function (item, index) {
+					return isKeyValue ? cb(item[1], item[0]) : cb(item, index);
+				}, this.domjs);
+			} else {
+				list = [];
+			}
 			if (!content.length && onEmpty) content = onEmpty;
 			replaceContent.call(this, content);
 		}.bind(this);
