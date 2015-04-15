@@ -6,6 +6,7 @@ var aFrom               = require('es5-ext/array/from')
   , iterable            = require('es5-ext/iterable/validate-object')
   , isMap               = require('es6-map/is-map')
   , isObservable        = require('observable-value/is-observable')
+  , isObservableValue   = require('observable-value/is-observable-value')
   , makeElement         = require('dom-ext/document/#/make-element')
   , normalize           = require('dom-ext/document/#/normalize')
   , castAttributes      = require('dom-ext/element/#/cast-attributes')
@@ -15,8 +16,7 @@ var aFrom               = require('es5-ext/array/from')
   , isNode              = require('dom-ext/node/is-node')
   , memoize             = require('memoizee/plain')
   , getOneArgNormalizer = require('memoizee/normalizers/get-1')
-  , getNormalizer       = require('memoizee/normalizers/get-fixed')
-  , isObservableValue   = require('observable-value/is-observable-value');
+  , getNormalizer       = require('memoizee/normalizers/get-fixed');
 
 module.exports = function (childName, isChildNode) {
 	return function (listArg/*, renderItem, thisArg*/) {
