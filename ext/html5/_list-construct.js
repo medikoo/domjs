@@ -65,7 +65,7 @@ module.exports = function (childName, isChildNode) {
 					return isKeyValue ? cb.call(this, item[1], item[0]) : cb.call(this, item, index);
 				}, this.domjs);
 			} else {
-				list = [];
+				content = [];
 			}
 			if (!content.length && onEmpty) content = onEmpty;
 			replaceContent.call(this, content);
