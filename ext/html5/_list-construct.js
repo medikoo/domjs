@@ -20,7 +20,7 @@ var aFrom               = require('es5-ext/array/from')
 
 module.exports = function (childName, isChildNode) {
 	return function (listArg/*, renderItem, thisArg*/) {
-		var attrs, renderItem, render, thisArg, cb, onEmpty, listValue = listArg;
+		var attrs, renderItem, render, thisArg, cb, onEmpty, listValue = listArg, list;
 		if (isPlainObject(listValue) && !isFunction(arguments[1])) {
 			attrs = listValue;
 			listValue = arguments[1];
@@ -31,7 +31,8 @@ module.exports = function (childName, isChildNode) {
 			thisArg = arguments[2];
 		}
 		if (isNode(listValue) || !isFunction(renderItem)) return elExtend.apply(this, arguments);
-		iterable(listValue);
+		list = listValue;
+		iterable(list);
 		if (attrs) {
 			if (attrs.onEmpty) {
 				onEmpty = attrs.onEmpty;
@@ -58,13 +59,13 @@ module.exports = function (childName, isChildNode) {
 		};
 		render = function () {
 			var content;
-			content = aFrom(listValue, cb, this.domjs);
+			content = aFrom(list, cb, this.domjs);
 			if (!content.length && onEmpty) content = onEmpty;
 			replaceContent.call(this, content);
 		}.bind(this);
-		if (isObservable(listValue)) {
-			cb = memoize(cb, { normalizer: isMap(listValue) ? getNormalizer(2) : getOneArgNormalizer() });
-			listValue.on('change', render);
+		if (isObservable(list)) {
+			cb = memoize(cb, { normalizer: isMap(list) ? getNormalizer(2) : getOneArgNormalizer() });
+			list.on('change', render);
 		}
 		render();
 		return this;
