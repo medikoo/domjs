@@ -53,8 +53,7 @@ module.exports = function (childName, isChildNode) {
 			if (!content.length && onEmpty) content = onEmpty;
 			replaceContent.call(this, content);
 		}.bind(this);
-		list = listValue;
-		iterable(list);
+		iterable(listValue);
 		if (attrs) {
 			if (attrs.onEmpty) {
 				onEmpty = attrs.onEmpty;
@@ -63,6 +62,7 @@ module.exports = function (childName, isChildNode) {
 			}
 			castAttributes.call(this, attrs);
 		}
+		list = listValue;
 		if (isObservable(list)) {
 			cb = memoize(cb, { normalizer: isMap(list) ? getNormalizer(2) : getOneArgNormalizer() });
 			list.on('change', render);
