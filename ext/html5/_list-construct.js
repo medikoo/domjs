@@ -62,7 +62,7 @@ module.exports = function (childName, isChildNode) {
 			if (list) {
 				isKeyValue = isMap(list);
 				content = aFrom(list, function (item, index) {
-					return isKeyValue ? cb(item[1], item[0]) : cb(item, index);
+					return isKeyValue ? cb.call(this, item[1], item[0]) : cb.call(this, item, index);
 				}, this.domjs);
 			} else {
 				list = [];
