@@ -33,14 +33,6 @@ module.exports = function (childName, isChildNode) {
 		if (isNode(listValue) || !isFunction(renderItem)) return elExtend.apply(this, arguments);
 		list = listValue;
 		iterable(list);
-		if (attrs) {
-			if (attrs.onEmpty) {
-				onEmpty = attrs.onEmpty;
-				delete attrs.onEmpty;
-				if (isNode(onEmpty)) remove.call(onEmpty);
-			}
-			castAttributes.call(this, attrs);
-		}
 		cb = function (item, index, list) {
 			var result;
 			result = this.safeCollectRaw(renderItem.bind(thisArg, item, index, list));
@@ -63,6 +55,14 @@ module.exports = function (childName, isChildNode) {
 			if (!content.length && onEmpty) content = onEmpty;
 			replaceContent.call(this, content);
 		}.bind(this);
+		if (attrs) {
+			if (attrs.onEmpty) {
+				onEmpty = attrs.onEmpty;
+				delete attrs.onEmpty;
+				if (isNode(onEmpty)) remove.call(onEmpty);
+			}
+			castAttributes.call(this, attrs);
+		}
 		if (isObservable(list)) {
 			cb = memoize(cb, { normalizer: isMap(list) ? getNormalizer(2) : getOneArgNormalizer() });
 			list.on('change', render);
