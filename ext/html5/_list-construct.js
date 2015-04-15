@@ -31,8 +31,6 @@ module.exports = function (childName, isChildNode) {
 			thisArg = arguments[2];
 		}
 		if (isNode(listValue) || !isFunction(renderItem)) return elExtend.apply(this, arguments);
-		list = listValue;
-		iterable(list);
 		cb = function (item, index, list) {
 			var result;
 			result = this.safeCollectRaw(renderItem.bind(thisArg, item, index, list));
@@ -55,6 +53,8 @@ module.exports = function (childName, isChildNode) {
 			if (!content.length && onEmpty) content = onEmpty;
 			replaceContent.call(this, content);
 		}.bind(this);
+		list = listValue;
+		iterable(list);
 		if (attrs) {
 			if (attrs.onEmpty) {
 				onEmpty = attrs.onEmpty;
