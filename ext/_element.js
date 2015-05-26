@@ -21,6 +21,7 @@ exports.include         = include;
 exports.prepend         = require('dom-ext/element/#/prepend');
 exports.remove          = require('dom-ext/element/#/remove');
 exports.replace         = require('dom-ext/element/#/replace');
+exports.replaceContent  = require('dom-ext/element/#/replace-content');
 
 exports.toggle = function (value) {
 	if (value) include.call(this);
