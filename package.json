@@ -15,21 +15,21 @@
     "url": "git://github.com/medikoo/domjs.git"
   },
   "dependencies": {
-    "d": "~0.1.1",
-    "dom-ext": "git://github.com/medikoo/dom-ext.git",
-    "es5-ext": "~0.10.2",
-    "es6-iterator": "git://github.com/medikoo/es6-iterator.git",
-    "es6-map": "~0.1.1",
-    "event-emitter": "~0.3.1",
-    "memoizee": "~0.3.1",
-    "observable-value": "git://github.com/medikoo/observable-value.git"
+    "d": "^0.1.1",
+    "dom-ext": "0.0.2",
+    "es5-ext": "^0.10.7",
+    "es6-iterator": "1",
+    "es6-map": "^0.1.1",
+    "event-emitter": "^0.3.3",
+    "memoizee": "^0.3.8",
+    "observable-value": "0.0.3"
   },
   "devDependencies": {
-    "commander": "~1.1",
-    "jsdom": "~3.1.2",
-    "tad": "0.2.x",
-    "xlint": "~0.2.1",
-    "xlint-jslint-medikoo": "0.1.x"
+    "commander": "^2.8.1",
+    "jsdom": "^3.1.2",
+    "tad": "^0.2.3",
+    "xlint": "^0.2.2",
+    "xlint-jslint-medikoo": "^0.1.3"
   },
   "scripts": {
     "lint": "node node_modules/xlint/bin/xlint --linter=node_modules/xlint-jslint-medikoo/index.js --no-cache --no-stream",
