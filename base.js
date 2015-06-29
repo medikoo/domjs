@@ -1,6 +1,7 @@
 'use strict';
 
-var assign         = require('es5-ext/object/assign')
+var getDomjs       = require('es5-ext/function/pluck')('_domjs')
+  , assign         = require('es5-ext/object/assign')
   , forEach        = require('es5-ext/object/for-each')
   , d              = require('d')
   , autoBind       = require('d/auto-bind')
@@ -116,5 +117,5 @@ Object.defineProperties(Base.prototype, assign({
 			else if (dom != null) this._current.appendChild(dom);
 			return dom;
 		})
-	}, '_domjs')))
+	}, { resolveContext: getDomjs })))
 }));

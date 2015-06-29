@@ -1,6 +1,7 @@
 'use strict';
 
-var assign         = require('es5-ext/object/assign')
+var getDomjs       = require('es5-ext/function/pluck')('_domjs')
+  , assign         = require('es5-ext/object/assign')
   , mixin          = require('es5-ext/object/mixin')
   , d              = require('d')
   , autoBind       = require('d/auto-bind')
@@ -43,7 +44,7 @@ module.exports = HTML5 = function (document) {
 
 HTML5.prototype = Object.create(Base.prototype, {
 	constructor: d(HTML5),
-	ns: d(Object.create(Base.prototype.ns, autoBind(elements, '_domjs')))
+	ns: d(Object.create(Base.prototype.ns, autoBind(elements, { resolveContext: getDomjs })))
 });
 
 assign(require('./ext'), {
