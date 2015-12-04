@@ -15,7 +15,7 @@
     "url": "git://github.com/medikoo/domjs.git"
   },
   "dependencies": {
-    "d": "^0.1.1",
+    "d": "1",
     "dom-ext": "0.0.3",
     "es5-ext": "^0.10.9",
     "es6-iterator": "2",
