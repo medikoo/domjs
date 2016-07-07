@@ -4,17 +4,11 @@
 Build dom structure easy way with plain JavaScript. Can be used on both client
 and server side.
 
-## Instalation
-
-### Node.js
-
-In your project path:
+### Installation
 
 	$ npm install domjs
 
-### Browser
-
-You can easily create browser bundle with help of [modules-webmake](https://github.com/medikoo/modules-webmake). Mind that it relies on some EcmaScript5 features, so for older browsers you need as well [es5-shim](https://github.com/kriskowal/es5-shim)
+To port it to Browser or any other (non CJS) environment, use your favorite CJS bundler. No favorite yet? Try: [Browserify](http://browserify.org/), [Webmake](https://github.com/medikoo/modules-webmake) or [Webpack](http://webpack.github.io/)
 
 ## Usage
 
@@ -40,15 +34,59 @@ var mytemplate = function () {
 };
 ```
 
-This is how templates for domjs are written.
+This is how templates for domjs can be written.
 
-To get `mytemplate` function content turned into DOM
-(literally _DocumentFragment_):
+Plain `domjs` usage example:
 
 ```javascript
-var domjs = require('domjs/lib/html5')(document);
+var domjs = require('domjs')(document);
 
-var mydom = domjs.build(mytemplate);
+var ns = domjs.ns;
+var dom = domjs.collect(function () {
+	ns.header(
+    ns.h1('Heading'),
+    ns.h2('Subheading'));
+
+  ns.nav(
+    ns.ul({ 'class': 'breadcrumbs' },
+      ns.li(a({ href: '/' }, 'Home')),
+      ns.li(a({ href: '/section/'}, 'Section')),
+      ns.li(a('Subject'))));
+
+  ns.article(
+    ns.p('Lorem ipsum...'));
+
+  ns.footer('Footer stuff');
+});
+
+document.body.appendChild(dom); // Insert generated DOM into document body
+```
+
+To use domjs functions literally as in first example, you will need to prepare dedicated function wrapper
+(either programmatically or manually) as e.g. following:
+
+```javascript
+var myTemplate = (function () {}
+  var article = ns.article, footer = ns.footer, h1 = ns.h1, h2 = ns.h2
+    , header = ns.header, li = ns.li, nav = ns.nav, p = ns.p, ul = ns.ul;
+  return function () {
+	  header(
+      h1('Heading'),
+      h2('Subheading'));
+
+    nav(
+      ul({ 'class': 'breadcrumbs' },
+        li(a({ href: '/' }, 'Home')),
+        li(a({ href: '/section/'}, 'Section')),
+        li(a('Subject'))));
+
+    article(
+     p('Lorem ipsum...'));
+
+    footer('Footer stuff');
+  };
+}());
+var dom = domjs.collect(myTemplate);
 ```
 
 ### Other notes
@@ -100,7 +138,5 @@ _var('var content');
 ```
 
 ## Tests [![Build Status](https://secure.travis-ci.org/medikoo/domjs.png?branch=master)](https://secure.travis-ci.org/medikoo/domjs)
-
-As `jsdom` won't install properly on Windows domjs can only be tested only on _*nix_ systems
 
 	$ npm test
