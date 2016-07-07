@@ -1,3 +1,20 @@
+v0.3.0  --  2016.07.07
+* HTML functions are no longer exposed on global scope, but now are provided on `domjs.ns` object
+  If one wants to use functions literally as with 0.2 version, needs to prepare special wrapper
+  that provides those functions directly to underlying function
+* Complete reorganization of internal logic
+* Provide `[].forEach` like invocation method for `ul`, `ol`, `select, `optgroup`
+* Provide generic (non-wrapper) `list` element that supports dynamic list handling
+* Provide `getById`, `toggle`, `disableControls`, `castAttribute`, `replaceContent` methods
+  for elements
+* Provide `insert` function
+* Add suport for `dialog` and `meta` elements
+* Provide directives (customizations invoked via attributes) support
+* Workaround FF bug, which disallows replacement of element prototype
+* Remove Makefile
+* Configure lint scripts
+* Fix spelling of LICENSE
+
 v0.2.3  --  2013.02.13
 Two crucial fixes to v0.2 branch:
 * Fix entry script path in package.json
@@ -6,7 +23,7 @@ Two crucial fixes to v0.2 branch:
 
 v0.2.2  --  2012.06.13
 * Quick fix for totally broken v0.2.1. Mistakenly published package that was not
-  fully updated up to changes in es5-ext project.
+  fully updated up to changes in es5-ext projectw.
 
 v0.2.1  --  2012.06.13
 * Fix array-like object detection when processing child node arguments
