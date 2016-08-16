@@ -115,19 +115,19 @@ arguments
 Comment type nodes:
 
 ```javascript
-_comment('my comment');
+comment('my comment');
 ```
 
 CDATA type nodes
 
 ```javascript
-_cdata('cdata text');
+cdata('cdata text');
 ```
 
 Text nodes in main scope:
 
 ```javascript
-_text('my text');
+text('my text');
 ```
 
 Elements with names that are reserved keywords in JavaScript language, like
