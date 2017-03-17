@@ -1,3 +1,7 @@
+v0.3.1  --  2017.03.17
+* Improve documentation
+* Update dependencies
+
 v0.3.0  --  2016.07.07
 * HTML functions are no longer exposed on global scope, but now are provided on `domjs.ns` object
   If one wants to use functions literally as with 0.2 version, needs to prepare special wrapper
