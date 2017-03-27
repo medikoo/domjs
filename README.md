@@ -69,7 +69,7 @@ To use domjs functions literally as in first example, you will need to prepare d
 var myTemplate = (function () {}
   var { article, footer, h1, h2, header, li, nav, p, ul } = ns;
   return function () {
-	  header(
+    header(
       h1('Heading'),
       h2('Subheading'));
 
