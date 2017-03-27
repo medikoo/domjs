@@ -90,6 +90,22 @@ var dom = domjs.collect(myTemplate);
 
 ### Other notes
 
+You can create custom elements:
+
+```javascript
+var myCustomElement = domjs.ns.myCustomElement = domjs.ns.element.bind(domjs, 'my-custom-element');
+```
+
+Optionally you may also provide some custom constructor or methods for that element:
+
+```javascript
+// This has to be defined before any `my-custom-element` is created by domjs
+require('domjs/ext')['my-custom-element'] = {
+  _construct: function (/* constuctor args */) {},
+  methodA: function () { ... }
+};
+```
+
 You can save references to elements and operate on them later:
 
 ```javascript
