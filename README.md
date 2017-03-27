@@ -67,8 +67,7 @@ To use domjs functions literally as in first example, you will need to prepare d
 
 ```javascript
 var myTemplate = (function () {}
-  var article = ns.article, footer = ns.footer, h1 = ns.h1, h2 = ns.h2
-    , header = ns.header, li = ns.li, nav = ns.nav, p = ns.p, ul = ns.ul;
+  var { article, footer, h1, h2, header, li, nav, p, ul } = ns;
   return function () {
 	  header(
       h1('Heading'),
