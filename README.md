@@ -43,7 +43,7 @@ var domjs = require('domjs')(document);
 
 var ns = domjs.ns;
 var dom = domjs.collect(function () {
-	ns.header(
+  ns.header(
     ns.h1('Heading'),
     ns.h2('Subheading'));
 
