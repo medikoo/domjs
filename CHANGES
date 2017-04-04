@@ -1,3 +1,6 @@
+v0.3.2  --  2017.04.04
+* Ensure not to shadow native methods
+
 v0.3.1  --  2017.03.17
 * Improve documentation
 * Update dependencies

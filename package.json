@@ -1,6 +1,6 @@
 {
   "name": "domjs",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "DOM template engine for client and server",
   "author": "Mariusz Nowak <medikoo@medikoo.com> (http://www.medikoo.com/)",
   "keywords": [
