@@ -66,14 +66,16 @@ Object.defineProperties(Base.prototype, assign({
 }), memoizeMethods({
 	_elementProto: d(function (name) {
 		var proto = create(getPrototypeOf(this.document.createElement(name)));
-		forEach(ext._element, function (value, name) {
-			defineProperty(proto, name, d(value));
-		});
 		if (ext[name]) {
 			forEach(ext[name], function (value, name) {
+				if (name in proto) return;
 				defineProperty(proto, name, d(value));
 			});
 		}
+		forEach(ext._element, function (value, name) {
+			if (name in proto) return;
+			defineProperty(proto, name, d(value));
+		});
 		defineProperties(proto, {
 			domjs: d(this),
 			_directives: d(this.getDirectives(name))
