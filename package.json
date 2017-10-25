@@ -16,17 +16,17 @@
   },
   "dependencies": {
     "d": "1",
-    "dom-ext": "0.1",
-    "es5-ext": "^0.10.14",
-    "es6-iterator": "^2.0.1",
+    "dom-ext": "^0.1.5",
+    "es5-ext": "^0.10.35",
+    "es6-iterator": "^2.0.3",
     "es6-map": "^0.1.5",
     "event-emitter": "^0.3.5",
-    "memoizee": "^0.4.4",
+    "memoizee": "^0.4.11",
     "observable-value": "0.1"
   },
   "devDependencies": {
-    "commander": "^2.9",
-    "jsdom": "^9.4.1",
+    "commander": "^2.11",
+    "jsdom": "^11.3",
     "tad": "^0.2.7",
     "xlint": "^0.2.2",
     "xlint-jslint-medikoo": "^0.1.4"
